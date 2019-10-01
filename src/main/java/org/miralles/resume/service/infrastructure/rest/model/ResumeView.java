@@ -1,13 +1,13 @@
 package org.miralles.resume.service.infrastructure.rest.model;
 
 public final class ResumeView {
-    private final String bodyContent;
+    private final ContactInfoView contactInfoView;
 
-    public ResumeView(String bodyContent) {
-        this.bodyContent = bodyContent;
+    public ResumeView(ContactInfoView contactInfoView) {
+        this.contactInfoView = contactInfoView;
     }
 
-    public String getBodyContent() {
-        return bodyContent;
+    public ContactInfoView getContactInfoView() {
+        return contactInfoView;
     }
 }

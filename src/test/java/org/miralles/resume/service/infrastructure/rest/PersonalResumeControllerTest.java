@@ -23,6 +23,6 @@ public class PersonalResumeControllerTest {
     @Test
     public void shouldReturnDefaultMessage() throws Exception {
         this.mockMvc.perform(get("/resume")).andExpect(status().isOk())
-                .andExpect(content().string(containsString("This is a test")));
+                .andExpect(content().string(containsString("contactInfoView")));
     }
 }
