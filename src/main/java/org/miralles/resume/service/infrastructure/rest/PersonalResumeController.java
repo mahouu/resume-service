@@ -7,6 +7,7 @@ import org.miralles.resume.service.infrastructure.rest.model.ResumeView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,7 @@ public class PersonalResumeController {
     @Autowired
     private ResumeUseCase resumeUseCase;
 
+    @CrossOrigin(origins = "http://localhost:3000")//TODO extract to configuration
     @GetMapping(value = "/resume")
     public ResponseEntity<ResumeView> getAllEmployees() {
 

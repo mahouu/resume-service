@@ -1,5 +1,7 @@
 package org.miralles.resume.service.infrastructure.rest.model;
 
+import java.util.Objects;
+
 public final class ContactInfoView {
     private final String email;
     private final String name;
@@ -46,5 +48,24 @@ public final class ContactInfoView {
 
     public String getResumeOnlineUrl() {
         return resumeOnlineUrl;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ContactInfoView)) return false;
+        ContactInfoView that = (ContactInfoView) o;
+        return Objects.equals(getEmail(), that.getEmail()) &&
+                Objects.equals(getName(), that.getName()) &&
+                Objects.equals(getSurname(), that.getSurname()) &&
+                Objects.equals(getGitUrl(), that.getGitUrl()) &&
+                Objects.equals(getSonarUrl(), that.getSonarUrl()) &&
+                Objects.equals(getPhoneNumber(), that.getPhoneNumber()) &&
+                Objects.equals(getResumeOnlineUrl(), that.getResumeOnlineUrl());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getEmail(), getName(), getSurname(), getGitUrl(), getSonarUrl(), getPhoneNumber(), getResumeOnlineUrl());
     }
 }
