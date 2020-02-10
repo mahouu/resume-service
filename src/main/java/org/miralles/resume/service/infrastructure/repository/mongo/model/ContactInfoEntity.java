@@ -98,4 +98,17 @@ public class ContactInfoEntity {
     public final int hashCode() {
         return Objects.hash(email, name, surname, gitUrl, sonarUrl, phoneNumber, resumeOnlineUrl);
     }
+
+    @Override
+    public String toString() {
+        return "ContactInfoEntity{" +
+                "email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", gitUrl='" + gitUrl + '\'' +
+                ", sonarUrl='" + sonarUrl + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", resumeOnlineUrl='" + resumeOnlineUrl + '\'' +
+                '}';
+    }
 }

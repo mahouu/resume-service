@@ -18,6 +18,8 @@ public class ResumeMongoRepository implements ResumeRepository {
     public ContactInfo getContactInfo() {
         ResumeEntity result = resumeMongo.findFirstByContactInfoEntity_Name(ANY_NAME);//TODO H2 integration test
 
+        System.out.println("Info retrieved from the mongo repository: " + result);
+
         return new ContactInfo(
                 result.getContactInfoEntity().getEmail(),
                 result.getContactInfoEntity().getName(),

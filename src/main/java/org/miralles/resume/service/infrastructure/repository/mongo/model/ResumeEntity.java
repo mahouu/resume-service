@@ -32,4 +32,11 @@ public class ResumeEntity {
     public final int hashCode() {
         return Objects.hash(contactInfoEntity);
     }
+
+    @Override
+    public String toString() {
+        return "ResumeEntity{" +
+                "contactInfoEntity=" + contactInfoEntity +
+                '}';
+    }
 }
