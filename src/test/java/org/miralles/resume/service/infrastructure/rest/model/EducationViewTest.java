@@ -6,18 +6,16 @@ import org.junit.Test;
 
 import static org.mutabilitydetector.unittesting.MutabilityAssert.assertImmutable;
 
-public class ResumeViewTest {
+public class EducationViewTest {
     @Test
-    public void testResumeViewIsImmutable() {
-        assertImmutable(ResumeView.class);
+    public void testContactInfoViewIsImmutable() {
+        assertImmutable(EducationView.class);
     }
 
     @Test
     public void equalsContract() {
-        EqualsVerifier.forClass(ResumeView.class)
+        EqualsVerifier.forClass(EducationView.class)
                 .suppress(Warning.INHERITED_DIRECTLY_FROM_OBJECT)
-                .suppress(Warning.NULL_FIELDS)
-                .suppress(Warning.NONFINAL_FIELDS)
                 .verify();
     }
 }

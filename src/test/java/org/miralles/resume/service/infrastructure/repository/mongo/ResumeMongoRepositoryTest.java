@@ -25,6 +25,8 @@ public class ResumeMongoRepositoryTest {
 
     @Mock
     private ResumeMongo resumeMongo;
+    @Mock
+    private EducationMongo educationMongo;
     private ResumeMongoRepository resumeMongoRepository;
 
     @Before
@@ -33,7 +35,7 @@ public class ResumeMongoRepositoryTest {
                 ANY_SURNAME, ANY_GIT_URL, ANY_SONAR_URL, ANY_PHONE_NUMBER, ANY_RESUME_URL);
         ResumeEntity resumeEntity = new ResumeEntity(contactInfoEntity);
         when(resumeMongo.findFirstByContactInfoEntity_Name(ANY_NAME)).thenReturn(resumeEntity);
-        resumeMongoRepository = new ResumeMongoRepository(resumeMongo);
+        resumeMongoRepository = new ResumeMongoRepository(resumeMongo, educationMongo);
     }
 
     @Test
