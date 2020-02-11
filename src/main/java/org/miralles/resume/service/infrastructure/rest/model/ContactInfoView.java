@@ -3,51 +3,51 @@ package org.miralles.resume.service.infrastructure.rest.model;
 import java.util.Objects;
 
 public final class ContactInfoView {
-    private final String email;
-    private final String name;
-    private final String surname;
-    private final String gitUrl;
-    private final String sonarUrl;
-    private final String phoneNumber;
-    private final String resumeOnlineUrl;
+    private final String emailView;
+    private final String nameView;
+    private final String surnameView;
+    private final String gitUrlView;
+    private final String sonarUrlView;
+    private final String phoneNumberView;
+    private final String resumeOnlineUrlView;
 
-    public ContactInfoView(final String email, final String name, final String surname, final String gitUrl,
-                           final String sonarUrl, final String phoneNumber, final String resumeOnlineUrl) {
-        this.email = email;
-        this.name = name;
-        this.surname = surname;
-        this.gitUrl = gitUrl;
-        this.sonarUrl = sonarUrl;
-        this.phoneNumber = phoneNumber;
-        this.resumeOnlineUrl = resumeOnlineUrl;
+    public ContactInfoView(final String emailView, final String nameView, final String surnameView, final String gitUrlView,
+                           final String sonarUrlView, final String phoneNumberView, final String resumeOnlineUrlView) {
+        this.emailView = emailView;
+        this.nameView = nameView;
+        this.surnameView = surnameView;
+        this.gitUrlView = gitUrlView;
+        this.sonarUrlView = sonarUrlView;
+        this.phoneNumberView = phoneNumberView;
+        this.resumeOnlineUrlView = resumeOnlineUrlView;
     }
 
-    public String getEmail() {
-        return email;
+    public String getEmailView() {
+        return emailView;
     }
 
-    public String getName() {
-        return name;
+    public String getNameView() {
+        return nameView;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getSurnameView() {
+        return surnameView;
     }
 
-    public String getGitUrl() {
-        return gitUrl;
+    public String getGitUrlView() {
+        return gitUrlView;
     }
 
-    public String getSonarUrl() {
-        return sonarUrl;
+    public String getSonarUrlView() {
+        return sonarUrlView;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPhoneNumberView() {
+        return phoneNumberView;
     }
 
-    public String getResumeOnlineUrl() {
-        return resumeOnlineUrl;
+    public String getResumeOnlineUrlView() {
+        return resumeOnlineUrlView;
     }
 
     @Override
@@ -55,17 +55,17 @@ public final class ContactInfoView {
         if (this == o) return true;
         if (!(o instanceof ContactInfoView)) return false;
         ContactInfoView that = (ContactInfoView) o;
-        return Objects.equals(getEmail(), that.getEmail()) &&
-                Objects.equals(getName(), that.getName()) &&
-                Objects.equals(getSurname(), that.getSurname()) &&
-                Objects.equals(getGitUrl(), that.getGitUrl()) &&
-                Objects.equals(getSonarUrl(), that.getSonarUrl()) &&
-                Objects.equals(getPhoneNumber(), that.getPhoneNumber()) &&
-                Objects.equals(getResumeOnlineUrl(), that.getResumeOnlineUrl());
+        return Objects.equals(getEmailView(), that.getEmailView()) &&
+                Objects.equals(getNameView(), that.getNameView()) &&
+                Objects.equals(getSurnameView(), that.getSurnameView()) &&
+                Objects.equals(getGitUrlView(), that.getGitUrlView()) &&
+                Objects.equals(getSonarUrlView(), that.getSonarUrlView()) &&
+                Objects.equals(getPhoneNumberView(), that.getPhoneNumberView()) &&
+                Objects.equals(getResumeOnlineUrlView(), that.getResumeOnlineUrlView());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getEmail(), getName(), getSurname(), getGitUrl(), getSonarUrl(), getPhoneNumber(), getResumeOnlineUrl());
+        return Objects.hash(getEmailView(), getNameView(), getSurnameView(), getGitUrlView(), getSonarUrlView(), getPhoneNumberView(), getResumeOnlineUrlView());
     }
 }

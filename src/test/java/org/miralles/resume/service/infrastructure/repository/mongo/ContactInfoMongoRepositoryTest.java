@@ -8,6 +8,7 @@ import org.miralles.resume.service.domain.entity.ContactInfo;
 import org.miralles.resume.service.domain.entity.Education;
 import org.miralles.resume.service.domain.entity.EducationInfo;
 import org.miralles.resume.service.infrastructure.adapter.ContactInfoAdapter;
+import org.miralles.resume.service.infrastructure.adapter.EducationAdapter;
 import org.miralles.resume.service.infrastructure.repository.mongo.model.ContactInfoEntity;
 import org.miralles.resume.service.infrastructure.repository.mongo.model.EducationEntity;
 import org.miralles.resume.service.infrastructure.repository.mongo.model.ResumeEntity;
@@ -43,6 +44,8 @@ public class ContactInfoMongoRepositoryTest {
     private EducationMongo educationMongo;
     @Mock
     private ContactInfoAdapter contactInfoAdapter;
+    @Mock
+    private EducationAdapter educationAdapter;
     private ResumeMongoRepository resumeMongoRepository;
 
     @Before
@@ -53,7 +56,7 @@ public class ContactInfoMongoRepositoryTest {
         when(contactInfoMongo.findFirstByContactInfoEntity_Name(ANY_NAME)).thenReturn(resumeEntity);
         List<EducationEntity> educationEntity = List.of(new EducationEntity(ANY_LANGUAGE, ANY_DATE, null, ANY_TITLE, ANY_SUBTITLE, ANY_DESCRIPTION));
         when(educationMongo.findAllByLanguage(ANY_LANGUAGE)).thenReturn(educationEntity);
-        resumeMongoRepository = new ResumeMongoRepository(contactInfoMongo, educationMongo, contactInfoAdapter);
+        resumeMongoRepository = new ResumeMongoRepository(contactInfoMongo, educationMongo, contactInfoAdapter, educationAdapter);
     }
 
     @Test
@@ -70,6 +73,7 @@ public class ContactInfoMongoRepositoryTest {
     @Test
     public void retrieveEducationInfoWithoutEndDate() {
         EducationInfo expectedEducationInfo = new EducationInfo(singletonList(new Education(ANY_LANGUAGE, ANY_DATE, ANY_TITLE, ANY_SUBTITLE, ANY_DESCRIPTION)));
+        when(educationAdapter.adaptEducation(any())).thenReturn(singletonList(new Education(ANY_LANGUAGE, ANY_DATE, ANY_TITLE, ANY_SUBTITLE, ANY_DESCRIPTION)));
 
         EducationInfo educationInfo = resumeMongoRepository.getEducationInfoBy(ANY_LANGUAGE);
 
@@ -81,6 +85,7 @@ public class ContactInfoMongoRepositoryTest {
         List<EducationEntity> educationEntity = List.of(new EducationEntity(ANY_LANGUAGE, ANY_DATE, ANY_DATE, ANY_TITLE, ANY_SUBTITLE, ANY_DESCRIPTION));
         when(educationMongo.findAllByLanguage(ANY_LANGUAGE)).thenReturn(educationEntity);
         EducationInfo expectedEducationInfo = new EducationInfo(singletonList(new Education(ANY_LANGUAGE, ANY_FULL_DATE, ANY_TITLE, ANY_SUBTITLE, ANY_DESCRIPTION)));
+        when(educationAdapter.adaptEducation(any())).thenReturn(singletonList(new Education(ANY_LANGUAGE, ANY_FULL_DATE, ANY_TITLE, ANY_SUBTITLE, ANY_DESCRIPTION)));
 
         EducationInfo educationInfo = resumeMongoRepository.getEducationInfoBy(ANY_LANGUAGE);
 

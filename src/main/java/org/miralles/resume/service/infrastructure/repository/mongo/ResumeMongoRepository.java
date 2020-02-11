@@ -5,13 +5,13 @@ import org.miralles.resume.service.domain.entity.Education;
 import org.miralles.resume.service.domain.entity.EducationInfo;
 import org.miralles.resume.service.domain.port.secondary.ResumeRepository;
 import org.miralles.resume.service.infrastructure.adapter.ContactInfoAdapter;
+import org.miralles.resume.service.infrastructure.adapter.EducationAdapter;
 import org.miralles.resume.service.infrastructure.repository.mongo.model.EducationEntity;
 import org.miralles.resume.service.infrastructure.repository.mongo.model.ResumeEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -21,13 +21,16 @@ public class ResumeMongoRepository implements ResumeRepository {
     private EducationMongo educationMongo;
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     private final ContactInfoAdapter contactInfoAdapter;
+    private final EducationAdapter educationAdapter;
 
     public ResumeMongoRepository(ContactInfoMongo contactInfoMongo,
                                  EducationMongo educationMongo,
-                                 ContactInfoAdapter contactInfoAdapter) {
+                                 ContactInfoAdapter contactInfoAdapter,
+                                 EducationAdapter educationAdapter) {
         this.contactInfoMongo = contactInfoMongo;
         this.educationMongo = educationMongo;
         this.contactInfoAdapter = contactInfoAdapter;
+        this.educationAdapter = educationAdapter;
     }
 
     @Override
@@ -40,21 +43,15 @@ public class ResumeMongoRepository implements ResumeRepository {
     }
 
 
-
     @Override
     public EducationInfo getEducationInfoBy(final String language) {
         List<EducationEntity> educationEntityList = educationMongo.findAllByLanguage(language);
-        List<Education> educationInfoList = new ArrayList<>();
-        for (EducationEntity educationEntity : educationEntityList) {//TODO extract into an adapter
-            educationInfoList.add(new Education(educationEntity.getLanguage(), getFormattedDate(educationEntity), educationEntity.getTitle(), educationEntity.getSubTitle(), educationEntity.getDescription()));
-        }
+        List<Education> educationInfoList = educationAdapter.adaptEducation(educationEntityList);
 
         LOGGER.info("Info retrieved from the mongo repository for education: " + educationEntityList);
 
         return new EducationInfo(educationInfoList);
     }
 
-    private String getFormattedDate(EducationEntity educationEntity) {
-        return (educationEntity.getEndDate() != null) ? educationEntity.getStartDate() + " - " + educationEntity.getEndDate() : educationEntity.getStartDate();
-    }
+
 }
