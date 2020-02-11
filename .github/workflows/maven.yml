@@ -16,13 +16,15 @@ jobs:
     name: Build
   sonarCloudTrigger:
     name: SonarQube Scan
-    uses: kitabisa/sonarqube-action@v0.0.1
-    with:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: kitabisa/sonarqube-action@v0.0.1
+        with:
     # SonarQube server URL
-      host: 
+          host: https://sonarcloud.io
     # Set the sonar.projectBaseDir analysis property
-      projectBaseDir: # optional, default is .
+          projectBaseDir: .# optional, default is .
     # Login or authentication token of a SonarQube user
-      login: 9b0b11ab4daf583a740608994bf34a1f6cf0efa7
+          login: 9b0b11ab4daf583a740608994bf34a1f6cf0efa7
     # Password that goes with the sonar.login username. This should be left blank if an authentication token is being used.
-      password: # optional
+          
