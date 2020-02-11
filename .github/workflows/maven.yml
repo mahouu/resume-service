@@ -16,7 +16,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Build sonar metrics
-      run: mvn sonar:sonar
+      run: mvn sonar:sonar -Dsonar.projectKey=mahouu_resume-service -Dsonar.organization=mahouu -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@v1.1
       env:
