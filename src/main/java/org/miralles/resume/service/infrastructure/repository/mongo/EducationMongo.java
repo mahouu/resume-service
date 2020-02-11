@@ -1,10 +1,13 @@
 package org.miralles.resume.service.infrastructure.repository.mongo;
 
+import org.miralles.resume.service.infrastructure.repository.mongo.model.EducationEntity;
 import org.miralles.resume.service.infrastructure.repository.mongo.model.ResumeEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
-public interface ResumeMongo extends MongoRepository<ResumeEntity, String> {
-    ResumeEntity findFirstByContactInfoEntity_Name(String name);
+public interface EducationMongo extends MongoRepository<EducationEntity, String> {
+    List<EducationEntity> findAllByLanguage(String language);
 }

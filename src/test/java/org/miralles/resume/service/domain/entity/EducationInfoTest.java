@@ -1,4 +1,4 @@
-package org.miralles.resume.service.infrastructure.rest.model;
+package org.miralles.resume.service.domain.entity;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.Warning;
@@ -6,18 +6,17 @@ import org.junit.Test;
 
 import static org.mutabilitydetector.unittesting.MutabilityAssert.assertImmutable;
 
-public class ResumeViewTest {
+public class EducationInfoTest {
     @Test
-    public void testResumeViewIsImmutable() {
-        assertImmutable(ResumeView.class);
+    public void contactInfoIsImmutable() {
+        assertImmutable(EducationInfo.class);
     }
 
     @Test
     public void equalsContract() {
-        EqualsVerifier.forClass(ResumeView.class)
+        EqualsVerifier.forClass(EducationInfo.class)
                 .suppress(Warning.INHERITED_DIRECTLY_FROM_OBJECT)
                 .suppress(Warning.NULL_FIELDS)
-                .suppress(Warning.NONFINAL_FIELDS)
                 .verify();
     }
 }

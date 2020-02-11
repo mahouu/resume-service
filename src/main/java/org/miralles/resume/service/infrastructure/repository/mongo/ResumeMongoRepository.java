@@ -1,32 +1,57 @@
 package org.miralles.resume.service.infrastructure.repository.mongo;
 
 import org.miralles.resume.service.domain.entity.ContactInfo;
+import org.miralles.resume.service.domain.entity.Education;
+import org.miralles.resume.service.domain.entity.EducationInfo;
 import org.miralles.resume.service.domain.port.secondary.ResumeRepository;
+import org.miralles.resume.service.infrastructure.adapter.ContactInfoAdapter;
+import org.miralles.resume.service.infrastructure.adapter.EducationAdapter;
+import org.miralles.resume.service.infrastructure.repository.mongo.model.EducationEntity;
 import org.miralles.resume.service.infrastructure.repository.mongo.model.ResumeEntity;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class ResumeMongoRepository implements ResumeRepository {
-    private static final String ANY_NAME = "nombre";
-    private ResumeMongo resumeMongo;
+    private static final String ANY_NAME = "ANY_NAME";//TODO delete this!!!
+    private ContactInfoMongo contactInfoMongo;
+    private EducationMongo educationMongo;
+    private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+    private final ContactInfoAdapter contactInfoAdapter;
+    private final EducationAdapter educationAdapter;
 
-    public ResumeMongoRepository(ResumeMongo resumeMongo) {
-        this.resumeMongo = resumeMongo;
+    public ResumeMongoRepository(ContactInfoMongo contactInfoMongo,
+                                 EducationMongo educationMongo,
+                                 ContactInfoAdapter contactInfoAdapter,
+                                 EducationAdapter educationAdapter) {
+        this.contactInfoMongo = contactInfoMongo;
+        this.educationMongo = educationMongo;
+        this.contactInfoAdapter = contactInfoAdapter;
+        this.educationAdapter = educationAdapter;
     }
 
     @Override
     public ContactInfo getContactInfo() {
-        ResumeEntity result = resumeMongo.findFirstByContactInfoEntity_Name(ANY_NAME);//TODO H2 integration test
+        ResumeEntity result = contactInfoMongo.findFirstByContactInfoEntity_Name(ANY_NAME);//TODO H2 integration test
 
-        System.out.println("Info retrieved from the mongo repository: " + result);
+        LOGGER.info("Info retrieved from the mongo repository for contact info: " + result);
 
-        return new ContactInfo(
-                result.getContactInfoEntity().getEmail(),
-                result.getContactInfoEntity().getName(),
-                result.getContactInfoEntity().getSurname(),
-                result.getContactInfoEntity().getGitUrl(),
-                result.getContactInfoEntity().getSonarUrl(),
-                result.getContactInfoEntity().getPhoneNumber(),
-                result.getContactInfoEntity().getResumeOnlineUrl());//TODO extract into an adapter
+        return contactInfoAdapter.adaptContactInfoFromRepositoryEntity(result);
     }
+
+
+    @Override
+    public EducationInfo getEducationInfoBy(final String language) {
+        List<EducationEntity> educationEntityList = educationMongo.findAllByLanguage(language);
+        List<Education> educationInfoList = educationAdapter.adaptEducation(educationEntityList);
+
+        LOGGER.info("Info retrieved from the mongo repository for education: " + educationEntityList);
+
+        return new EducationInfo(educationInfoList);
+    }
+
+
 }

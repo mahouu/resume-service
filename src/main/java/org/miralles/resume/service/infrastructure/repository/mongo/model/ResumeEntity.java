@@ -4,7 +4,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Objects;
 
-@Document(collection = "resumedb")
+@Document(collection = "contactinfo")
 public class ResumeEntity {
     private ContactInfoEntity contactInfoEntity;
 
