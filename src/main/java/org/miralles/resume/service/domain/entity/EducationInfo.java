@@ -28,4 +28,11 @@ public final class EducationInfo {
     public int hashCode() {
         return Objects.hash(getEducationInfo());
     }
+
+    @Override
+    public String toString() {
+        return "EducationInfo{" +
+                "educationInfo=" + educationInfo +
+                '}';
+    }
 }

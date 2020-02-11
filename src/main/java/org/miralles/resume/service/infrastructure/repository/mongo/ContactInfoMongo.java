@@ -5,6 +5,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ResumeMongo extends MongoRepository<ResumeEntity, String> {
+public interface ContactInfoMongo extends MongoRepository<ResumeEntity, String> {
     ResumeEntity findFirstByContactInfoEntity_Name(String name);
 }

@@ -4,7 +4,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Objects;
 
-@Document(collection = "resumedb")//TODO change that name
+@Document(collection = "contactinfo")
 public class ContactInfoEntity {
     private String email;
     private String name;

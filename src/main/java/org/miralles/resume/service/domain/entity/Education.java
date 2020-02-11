@@ -53,4 +53,15 @@ public final class Education {
     public int hashCode() {
         return Objects.hash(getLanguage(), getDate(), getTitle(), getSubTitle(), getDescription());
     }
+
+    @Override
+    public String toString() {
+        return "Education{" +
+                "language='" + language + '\'' +
+                ", date='" + date + '\'' +
+                ", title='" + title + '\'' +
+                ", subTitle='" + subTitle + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
