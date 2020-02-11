@@ -16,7 +16,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Build sonar metrics
-      run: mvn org.sonarsource.scanner.maven:sonar
+      run: mvn sonar:sonar
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@v1.1
       env:
