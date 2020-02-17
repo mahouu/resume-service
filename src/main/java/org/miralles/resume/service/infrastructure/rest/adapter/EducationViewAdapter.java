@@ -10,7 +10,7 @@ import java.util.List;
 public class EducationViewAdapter {
     public List<EducationView> adaptToEducationViews(EducationInfo educationInfo) {
         List<EducationView> educationsView = new ArrayList<>();
-        for (Education education : educationInfo.getEducationInfo()) {
+        for (Education education : educationInfo.getEducationInfoList()) {
             educationsView.add(new EducationView(education.getLanguage(), education.getDate(), education.getTitle(), education.getSubTitle(), education.getDescription()));
         }
         return educationsView;

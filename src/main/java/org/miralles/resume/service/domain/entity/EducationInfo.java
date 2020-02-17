@@ -6,14 +6,14 @@ import java.util.List;
 import java.util.Objects;
 
 public final class EducationInfo {
-    private final List<Education> educationInfo;
+    private final List<Education> educationInfoList;
 
     public EducationInfo(List<Education> education) {
-        this.educationInfo = Collections.unmodifiableList(new ArrayList<>(education));
+        this.educationInfoList = Collections.unmodifiableList(new ArrayList<>(education));
     }
 
-    public List<Education> getEducationInfo() {
-        return educationInfo;
+    public List<Education> getEducationInfoList() {
+        return educationInfoList;
     }
 
     @Override
@@ -21,18 +21,18 @@ public final class EducationInfo {
         if (this == o) return true;
         if (!(o instanceof EducationInfo)) return false;
         EducationInfo that = (EducationInfo) o;
-        return Objects.equals(getEducationInfo(), that.getEducationInfo());
+        return Objects.equals(getEducationInfoList(), that.getEducationInfoList());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getEducationInfo());
+        return Objects.hash(getEducationInfoList());
     }
 
     @Override
     public String toString() {
         return "EducationInfo{" +
-                "educationInfo=" + educationInfo +
+                "educationInfo=" + educationInfoList +
                 '}';
     }
 }
