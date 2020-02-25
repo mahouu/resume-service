@@ -15,3 +15,20 @@ As many of the configurations of the data base are passed as a configuration par
  the following example:
 
 `mvn spring-boot:run -DDATABASE_USER=myuser -DDATABASE_PASSWORD=mypassword -DDATABASE_NAME=resumedb`
+
+
+How to install mongodb 3 in a raspberry environment:
+
+`https://hub.docker.com/r/andresvidal/rpi3-mongodb3/`
+
+How to configure the users of the data base:
+
+`db.createUser(
+{ user: "myuser", pwd: "mypassword", roles: [ { role: "dbOwner", db: "resumedb" } ] })`
+
+`db.grantRolesToUser(
+    "myuser",
+    [
+      { role: "read", db: "resumedb" }
+    ]
+)`
