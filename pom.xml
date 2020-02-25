@@ -21,6 +21,19 @@
 		<sonar.language>java</sonar.language>
 	</properties>
 
+	<repositories>
+		<repository>
+			<id>spring-releases</id>
+			<url>https://repo.spring.io/libs-release</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>spring-releases</id>
+			<url>https://repo.spring.io/libs-release</url>
+		</pluginRepository>
+	</pluginRepositories>
+
 	<distributionManagement>
 		<snapshotRepository>
 			<id>snapshots</id>
