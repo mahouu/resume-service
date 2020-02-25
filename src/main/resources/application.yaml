@@ -2,9 +2,9 @@ spring:
   data:
     mongodb:
       authentication-database: admin
-      username: myuser
-      password: mypassword
-      database: resumedb
+      username: ${DATABASE_USER}
+      password: ${DATABASE_PASSWORD}
+      database: ${DATABASE_NAME}
       port: 27017
       host: localhost
   jpa:
