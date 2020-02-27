@@ -51,7 +51,7 @@ public class ContactInfoMongoRepositoryTest {
     @Before
     public void setUp() {
         ContactInfoEntity contactInfoEntity = new ContactInfoEntity(ANY_EMAIL, ANY_NAME,
-                ANY_SURNAME, ANY_GIT_URL, ANY_SONAR_URL, ANY_PHONE_NUMBER, ANY_RESUME_URL);
+                ANY_SURNAME, ANY_GIT_URL, ANY_SONAR_URL, ANY_PHONE_NUMBER, ANY_RESUME_URL, null, null, null, null, null);//TODO refactor this test
         ResumeEntity resumeEntity = new ResumeEntity(contactInfoEntity);
         when(contactInfoMongo.findFirstByContactInfoEntity_Name(ANY_NAME)).thenReturn(resumeEntity);
         List<EducationEntity> educationEntity = List.of(new EducationEntity(ANY_LANGUAGE, ANY_DATE, null, ANY_TITLE, ANY_SUBTITLE, ANY_DESCRIPTION));
@@ -62,7 +62,7 @@ public class ContactInfoMongoRepositoryTest {
     @Test
     public void retrieveContactInfo() {
         ContactInfo expected = new ContactInfo(ANY_EMAIL, ANY_NAME,
-                ANY_SURNAME, ANY_GIT_URL, ANY_SONAR_URL, ANY_PHONE_NUMBER, ANY_RESUME_URL);
+                ANY_SURNAME, ANY_GIT_URL, ANY_SONAR_URL, ANY_PHONE_NUMBER, ANY_RESUME_URL, null);//TODO refactor this test
         when(contactInfoAdapter.adaptContactInfoFromRepositoryEntity(any())).thenReturn(expected);
 
         ContactInfo resumeRepository = resumeMongoRepository.getContactInfo();

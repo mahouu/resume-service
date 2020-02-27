@@ -13,8 +13,13 @@ public class ContactInfoEntity {
     private String sonarUrl;
     private String phoneNumber;
     private String resumeOnlineUrl;
+    private String address;
+    private String postalCode;
+    private String city;
+    private String region;
+    private String countryCode;
 
-    public ContactInfoEntity(final String email, final String name, final String surname, final String gitUrl, final String sonarUrl, final String phoneNumber, final String resumeOnlineUrl) {
+    public ContactInfoEntity(String email, String name, String surname, String gitUrl, String sonarUrl, String phoneNumber, String resumeOnlineUrl, String address, String postalCode, String city, String region, String countryCode) {
         this.email = email;
         this.name = name;
         this.surname = surname;
@@ -22,6 +27,11 @@ public class ContactInfoEntity {
         this.sonarUrl = sonarUrl;
         this.phoneNumber = phoneNumber;
         this.resumeOnlineUrl = resumeOnlineUrl;
+        this.address = address;
+        this.postalCode = postalCode;
+        this.city = city;
+        this.region = region;
+        this.countryCode = countryCode;
     }
 
     public String getEmail() {
@@ -80,8 +90,48 @@ public class ContactInfoEntity {
         this.resumeOnlineUrl = resumeOnlineUrl;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
+    }
+
     @Override
-    public final boolean equals(Object o) {
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof ContactInfoEntity)) return false;
         ContactInfoEntity that = (ContactInfoEntity) o;
@@ -91,12 +141,17 @@ public class ContactInfoEntity {
                 Objects.equals(getGitUrl(), that.getGitUrl()) &&
                 Objects.equals(getSonarUrl(), that.getSonarUrl()) &&
                 Objects.equals(getPhoneNumber(), that.getPhoneNumber()) &&
-                Objects.equals(getResumeOnlineUrl(), that.getResumeOnlineUrl());
+                Objects.equals(getResumeOnlineUrl(), that.getResumeOnlineUrl()) &&
+                Objects.equals(getAddress(), that.getAddress()) &&
+                Objects.equals(getPostalCode(), that.getPostalCode()) &&
+                Objects.equals(getCity(), that.getCity()) &&
+                Objects.equals(getRegion(), that.getRegion()) &&
+                Objects.equals(getCountryCode(), that.getCountryCode());
     }
 
     @Override
-    public final int hashCode() {
-        return Objects.hash(email, name, surname, gitUrl, sonarUrl, phoneNumber, resumeOnlineUrl);
+    public int hashCode() {
+        return Objects.hash(getEmail(), getName(), getSurname(), getGitUrl(), getSonarUrl(), getPhoneNumber(), getResumeOnlineUrl(), getAddress(), getPostalCode(), getCity(), getRegion(), getCountryCode());
     }
 
     @Override
@@ -109,6 +164,11 @@ public class ContactInfoEntity {
                 ", sonarUrl='" + sonarUrl + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", resumeOnlineUrl='" + resumeOnlineUrl + '\'' +
+                ", address='" + address + '\'' +
+                ", postalCode='" + postalCode + '\'' +
+                ", city='" + city + '\'' +
+                ", region='" + region + '\'' +
+                ", countryCode='" + countryCode + '\'' +
                 '}';
     }
 }

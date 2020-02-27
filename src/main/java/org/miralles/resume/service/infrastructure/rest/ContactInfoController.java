@@ -21,7 +21,7 @@ public class ContactInfoController {
     @Autowired
     private ContactInfoViewAdapter contactInfoViewAdapter;
 
-    @CrossOrigin(origins = "http://192.168.1.148:3000")//TODO extract to configuration
+    @CrossOrigin(origins = "http://localhost:3000")//TODO extract to configuration
     @GetMapping(value = "/contactInfo")
     public ResponseEntity<ResumeView> getAllEmployees() {
 

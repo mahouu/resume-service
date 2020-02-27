@@ -10,9 +10,11 @@ public final class ContactInfoView {
     private final String sonarUrlView;
     private final String phoneNumberView;
     private final String resumeOnlineUrlView;
+    private final LocationView locationView;
 
     public ContactInfoView(final String emailView, final String nameView, final String surnameView, final String gitUrlView,
-                           final String sonarUrlView, final String phoneNumberView, final String resumeOnlineUrlView) {
+                           final String sonarUrlView, final String phoneNumberView, final String resumeOnlineUrlView,
+                           final LocationView locationView) {
         this.emailView = emailView;
         this.nameView = nameView;
         this.surnameView = surnameView;
@@ -20,6 +22,7 @@ public final class ContactInfoView {
         this.sonarUrlView = sonarUrlView;
         this.phoneNumberView = phoneNumberView;
         this.resumeOnlineUrlView = resumeOnlineUrlView;
+        this.locationView = locationView;
     }
 
     public String getEmailView() {
@@ -50,6 +53,10 @@ public final class ContactInfoView {
         return resumeOnlineUrlView;
     }
 
+    public LocationView getLocationView() {
+        return locationView;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -61,11 +68,12 @@ public final class ContactInfoView {
                 Objects.equals(getGitUrlView(), that.getGitUrlView()) &&
                 Objects.equals(getSonarUrlView(), that.getSonarUrlView()) &&
                 Objects.equals(getPhoneNumberView(), that.getPhoneNumberView()) &&
-                Objects.equals(getResumeOnlineUrlView(), that.getResumeOnlineUrlView());
+                Objects.equals(getResumeOnlineUrlView(), that.getResumeOnlineUrlView()) &&
+                Objects.equals(getLocationView(), that.getLocationView());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getEmailView(), getNameView(), getSurnameView(), getGitUrlView(), getSonarUrlView(), getPhoneNumberView(), getResumeOnlineUrlView());
+        return Objects.hash(getEmailView(), getNameView(), getSurnameView(), getGitUrlView(), getSonarUrlView(), getPhoneNumberView(), getResumeOnlineUrlView(), getLocationView());
     }
 }
