@@ -24,7 +24,7 @@ public class EducationController {
     @Autowired
     private EducationViewAdapter educationViewAdapter;
 
-    @CrossOrigin(origins = "http://192.168.1.148:3000")//TODO extract to configuration
+    @CrossOrigin(origins = "http://localhost:3000")//TODO extract to configuration
     @GetMapping(value = "/education/{language}")
     public ResponseEntity<EducationInfoView> getAllEmployees(@PathVariable final String language) {
 
