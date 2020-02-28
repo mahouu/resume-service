@@ -6,7 +6,7 @@ spring:
       password: ${DATABASE_PASSWORD}
       database: ${DATABASE_NAME}
       port: 27017
-      host: localhost
+      host: 192.168.1.148
   jpa:
     database-platform:
 server:
@@ -14,7 +14,7 @@ server:
 logging:
   file: ./logs/application-debug.log
   level:
-    root: INFO
+    root: DEBUG
   pattern:
     console: '%d{yyyy-MM-dd HH:mm:ss} - %msg%n'
     file: '%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n'

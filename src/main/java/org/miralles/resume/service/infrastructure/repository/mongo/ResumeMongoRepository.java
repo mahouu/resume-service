@@ -16,7 +16,7 @@ import java.util.List;
 
 @Repository
 public class ResumeMongoRepository implements ResumeRepository {
-    private static final String ANY_NAME = "ANY_NAME";//TODO delete this!!!
+    private static final String ANY_NAME = "Mauricio";//TODO delete this!!!
     private ContactInfoMongo contactInfoMongo;
     private EducationMongo educationMongo;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -37,7 +37,7 @@ public class ResumeMongoRepository implements ResumeRepository {
     public ContactInfo getContactInfo() {
         ResumeEntity result = contactInfoMongo.findFirstByContactInfoEntity_Name(ANY_NAME);//TODO H2 integration test
 
-        logger.info("Info retrieved from the mongo repository for contact info: {}", result);
+        logger.debug("Info retrieved from the mongo repository for contact info: {}", result);
 
         return contactInfoAdapter.adaptContactInfoFromRepositoryEntity(result);
     }

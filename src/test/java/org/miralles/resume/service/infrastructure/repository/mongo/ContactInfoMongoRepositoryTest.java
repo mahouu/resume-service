@@ -10,9 +10,7 @@ import org.miralles.resume.service.domain.entity.EducationInfo;
 import org.miralles.resume.service.domain.entity.LocationInfo;
 import org.miralles.resume.service.infrastructure.adapter.ContactInfoAdapter;
 import org.miralles.resume.service.infrastructure.adapter.EducationAdapter;
-import org.miralles.resume.service.infrastructure.repository.mongo.model.ContactInfoEntity;
 import org.miralles.resume.service.infrastructure.repository.mongo.model.EducationEntity;
-import org.miralles.resume.service.infrastructure.repository.mongo.model.ResumeEntity;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
@@ -56,10 +54,6 @@ public class ContactInfoMongoRepositoryTest {
 
     @Before
     public void setUp() {
-        ContactInfoEntity contactInfoEntity = new ContactInfoEntity(ANY_EMAIL, ANY_NAME,
-                ANY_SURNAME, ANY_GIT_URL, ANY_SONAR_URL, ANY_PHONE_NUMBER, ANY_RESUME_URL, ANY_ADDRESS, ANY_POSTAL_CODE, ANY_CITY, ANY_REGION, ANY_COUNTRY_CODE);
-        ResumeEntity resumeEntity = new ResumeEntity(contactInfoEntity);
-        when(contactInfoMongo.findFirstByContactInfoEntity_Name(ANY_NAME)).thenReturn(resumeEntity);
         List<EducationEntity> educationEntity = List.of(new EducationEntity(ANY_LANGUAGE, ANY_DATE, null, ANY_TITLE, ANY_SUBTITLE, ANY_DESCRIPTION));
         when(educationMongo.findAllByLanguage(ANY_LANGUAGE)).thenReturn(educationEntity);
         resumeMongoRepository = new ResumeMongoRepository(contactInfoMongo, educationMongo, contactInfoAdapter, educationAdapter);
