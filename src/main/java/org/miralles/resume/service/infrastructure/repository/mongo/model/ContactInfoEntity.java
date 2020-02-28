@@ -131,7 +131,7 @@ public class ContactInfoEntity {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public final boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof ContactInfoEntity)) return false;
         ContactInfoEntity that = (ContactInfoEntity) o;
@@ -150,7 +150,7 @@ public class ContactInfoEntity {
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         return Objects.hash(getEmail(), getName(), getSurname(), getGitUrl(), getSonarUrl(), getPhoneNumber(), getResumeOnlineUrl(), getAddress(), getPostalCode(), getCity(), getRegion(), getCountryCode());
     }
 

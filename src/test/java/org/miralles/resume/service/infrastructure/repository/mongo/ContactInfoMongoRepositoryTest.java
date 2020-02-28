@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.miralles.resume.service.domain.entity.ContactInfo;
 import org.miralles.resume.service.domain.entity.Education;
 import org.miralles.resume.service.domain.entity.EducationInfo;
+import org.miralles.resume.service.domain.entity.LocationInfo;
 import org.miralles.resume.service.infrastructure.adapter.ContactInfoAdapter;
 import org.miralles.resume.service.infrastructure.adapter.EducationAdapter;
 import org.miralles.resume.service.infrastructure.repository.mongo.model.ContactInfoEntity;
@@ -37,6 +38,11 @@ public class ContactInfoMongoRepositoryTest {
     private static final String ANY_TITLE = "ANY_TITLE";
     private static final String ANY_SUBTITLE = "ANY_SUBTITLE";
     private static final String ANY_DESCRIPTION = "ANY_DESCRIPTION";
+    private static final String ANY_ADDRESS = "ANY_ADDRESS";
+    private static final String ANY_POSTAL_CODE = "ANY_POSTAL_CODE";
+    private static final String ANY_CITY = "ANY_CITY";
+    private static final String ANY_REGION = "ANY_REGION";
+    private static final String ANY_COUNTRY_CODE = "ANY_COUNTRY_CODE";
 
     @Mock
     private ContactInfoMongo contactInfoMongo;
@@ -51,7 +57,7 @@ public class ContactInfoMongoRepositoryTest {
     @Before
     public void setUp() {
         ContactInfoEntity contactInfoEntity = new ContactInfoEntity(ANY_EMAIL, ANY_NAME,
-                ANY_SURNAME, ANY_GIT_URL, ANY_SONAR_URL, ANY_PHONE_NUMBER, ANY_RESUME_URL, null, null, null, null, null);//TODO refactor this test
+                ANY_SURNAME, ANY_GIT_URL, ANY_SONAR_URL, ANY_PHONE_NUMBER, ANY_RESUME_URL, ANY_ADDRESS, ANY_POSTAL_CODE, ANY_CITY, ANY_REGION, ANY_COUNTRY_CODE);
         ResumeEntity resumeEntity = new ResumeEntity(contactInfoEntity);
         when(contactInfoMongo.findFirstByContactInfoEntity_Name(ANY_NAME)).thenReturn(resumeEntity);
         List<EducationEntity> educationEntity = List.of(new EducationEntity(ANY_LANGUAGE, ANY_DATE, null, ANY_TITLE, ANY_SUBTITLE, ANY_DESCRIPTION));
@@ -61,8 +67,9 @@ public class ContactInfoMongoRepositoryTest {
 
     @Test
     public void retrieveContactInfo() {
+        LocationInfo locationInfo = new LocationInfo(ANY_ADDRESS, ANY_POSTAL_CODE, ANY_CITY, ANY_REGION, ANY_COUNTRY_CODE);
         ContactInfo expected = new ContactInfo(ANY_EMAIL, ANY_NAME,
-                ANY_SURNAME, ANY_GIT_URL, ANY_SONAR_URL, ANY_PHONE_NUMBER, ANY_RESUME_URL, null);//TODO refactor this test
+                ANY_SURNAME, ANY_GIT_URL, ANY_SONAR_URL, ANY_PHONE_NUMBER, ANY_RESUME_URL, locationInfo);
         when(contactInfoAdapter.adaptContactInfoFromRepositoryEntity(any())).thenReturn(expected);
 
         ContactInfo resumeRepository = resumeMongoRepository.getContactInfo();
