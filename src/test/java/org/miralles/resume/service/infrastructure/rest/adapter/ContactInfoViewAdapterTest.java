@@ -28,7 +28,6 @@ public class ContactInfoViewAdapterTest {
     private static final String ANY_COUNTRY_CODE = "ANY_COUNTRY_CODE";
 
     @Test
-    @Ignore
     public void givenContactInfo_thenAdaptToContactInfoView() {
         LocationInfo locationInfo = new LocationInfo(ANY_ADDRESS, ANY_POSTAL_CODE, ANY_CITY, ANY_REGION, ANY_COUNTRY_CODE);
         LocationView locationView = new LocationView(ANY_ADDRESS, ANY_POSTAL_CODE, ANY_CITY, ANY_REGION, ANY_COUNTRY_CODE);
