@@ -3,6 +3,8 @@ package org.miralles.resume.service.infrastructure.repository.mongo;
 import org.miralles.resume.service.domain.entity.ContactInfo;
 import org.miralles.resume.service.domain.entity.Education;
 import org.miralles.resume.service.domain.entity.EducationInfo;
+import org.miralles.resume.service.domain.entity.ExperienceInfo;
+import org.miralles.resume.service.domain.entity.Task;
 import org.miralles.resume.service.domain.port.secondary.ResumeRepository;
 import org.miralles.resume.service.infrastructure.adapter.ContactInfoAdapter;
 import org.miralles.resume.service.infrastructure.adapter.EducationAdapter;
@@ -12,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -51,6 +54,11 @@ public class ResumeMongoRepository implements ResumeRepository {
         logger.info("Info retrieved from the mongo repository for education: {}", educationEntityList);
 
         return new EducationInfo(educationInfoList);
+    }
+
+    @Override
+    public List<ExperienceInfo> getExperienceInfoBy(final String language) {
+        return Collections.singletonList(new ExperienceInfo("ANY_TITLE", "ANY_COMPANY", "ANY_URL", "ANY_DESCRIPTION", "ANY_START_DATE", "ANY_END_DATE", Collections.singletonList(new Task("ANY_TASK_DESCRIPTION"))));
     }
 
 
