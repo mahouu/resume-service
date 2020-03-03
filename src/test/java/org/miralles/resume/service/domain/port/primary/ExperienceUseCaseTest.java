@@ -2,7 +2,7 @@ package org.miralles.resume.service.domain.port.primary;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.miralles.resume.service.domain.entity.ExperienceInfo;
+import org.miralles.resume.service.domain.entity.Experience;
 import org.miralles.resume.service.domain.entity.Task;
 
 import java.util.Collections;
@@ -25,11 +25,11 @@ public class ExperienceUseCaseTest {
         String endDate = "ANY_END_DATE";
         String taskDescription = "ANY_TASK_DESCRIPTION";
         List<Task> tasks = Collections.singletonList(new Task(taskDescription));
-        ExperienceInfo expected = new ExperienceInfo(title, company, url, roleDescription, startDate, endDate, tasks);
+        Experience expected = new Experience(title, company, url, roleDescription, startDate, endDate, tasks);
 
-        ExperienceInfo experienceInfo = useCase.execute(language);
+        Experience experience = useCase.execute(language);
 
-        Assert.assertThat(experienceInfo, is(equalTo(expected)));
+        Assert.assertThat(experience, is(equalTo(expected)));
     }
 
 }

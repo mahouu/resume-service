@@ -27,7 +27,7 @@ public class ExperienceEntity {
         this.roleDescription = roleDescription;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.tasks = new ArrayList<TaskEntity>(tasks);
+        this.tasks = new ArrayList<>(tasks);
     }
 
     public String getTitle() {
