@@ -1,35 +1,51 @@
 package org.miralles.resume.service.domain.port.primary;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.miralles.resume.service.domain.entity.Experience;
+import org.miralles.resume.service.domain.entity.ExperienceInfo;
 import org.miralles.resume.service.domain.entity.Task;
+import org.miralles.resume.service.domain.port.secondary.ResumeRepository;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.Collections;
-import java.util.List;
-
+import static java.util.Collections.singletonList;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
+import static org.mockito.Mockito.when;
 
+@RunWith(MockitoJUnitRunner.class)
 public class ExperienceUseCaseTest {
+    @Mock
+    private ResumeRepository resumeRepository;
+    private ExperienceUseCase useCase;
+
+    private final static String ANY_LANGUAGE = "ANY_LANGUAGE";
+    private final static String ANY_TITTLE = "ANY_TITTLE";
+    private final static String ANY_COMPANY = "ANY_COMPANY";
+    private final static String ANY_URL = "ANY_URL";
+    private final static String ANY_ROL_DESCRIPTION = "ANY_ROL_DESCRIPTION";
+    private final static String ANY_START_DATE = "ANY_START_DATE";
+    private final static String ANY_END_DATE = "ANY_END_DATE";
+    private final static String ANY_TASK_DESCRIPTION = "ANY_TASK_DESCRIPTION";
+
+    @Before
+    public void setUp() {
+        useCase = new ExperienceUseCase(resumeRepository);
+    }
 
     @Test
     public void givenALanguage_ThenRetrieveAllTheExperience() {
-        ExperienceUseCase useCase = new ExperienceUseCase();
-        String language = "ANY_LANGUAGE";
-        String title = "ANY_TITTLE";
-        String company = "ANY_COMPANY";
-        String url = "ANY_URL";
-        String roleDescription = "ANY_ROL_DESCRIPTION";
-        String startDate = "ANY_START_DATE";
-        String endDate = "ANY_END_DATE";
-        String taskDescription = "ANY_TASK_DESCRIPTION";
-        List<Task> tasks = Collections.singletonList(new Task(taskDescription));
-        Experience expected = new Experience(title, company, url, roleDescription, startDate, endDate, tasks);
+        Experience expected = new Experience(ANY_TITTLE, ANY_COMPANY, ANY_URL, ANY_ROL_DESCRIPTION, ANY_START_DATE, ANY_END_DATE, singletonList(new Task(ANY_TASK_DESCRIPTION)));
+        ExperienceInfo expectedExperienceInfo = new ExperienceInfo(singletonList(expected));
+        when(resumeRepository.getExperienceInfoBy(ANY_LANGUAGE)).thenReturn(expectedExperienceInfo);
+        ExperienceInfo experienceInfoExpected = new ExperienceInfo(singletonList(expected));
 
-        Experience experience = useCase.execute(language);
+        ExperienceInfo experience = useCase.execute(ANY_LANGUAGE);
 
-        Assert.assertThat(experience, is(equalTo(expected)));
+        Assert.assertThat(experience, is(equalTo(experienceInfoExpected)));
     }
 
 }

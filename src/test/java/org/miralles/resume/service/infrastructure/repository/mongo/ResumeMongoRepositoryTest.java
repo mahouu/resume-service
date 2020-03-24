@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.miralles.resume.service.domain.entity.Experience;
+import org.miralles.resume.service.domain.entity.ExperienceInfo;
 import org.miralles.resume.service.domain.entity.Task;
 import org.miralles.resume.service.infrastructure.adapter.ContactInfoAdapter;
 import org.miralles.resume.service.infrastructure.adapter.EducationAdapter;
@@ -51,11 +52,11 @@ public class ResumeMongoRepositoryTest {
 
     @Test
     public void givenALanguage_thenRetrieveAllExperienceInfo() {
-        List<Experience> expected = singletonList(new Experience(ANY_TITLE, ANY_COMPANY, ANY_URL, ANY_DESCRIPTION, ANY_START_DATE, ANY_END_DATE, singletonList(new Task(ANY_TASK_DESCRIPTION))));
+        ExperienceInfo expected = new ExperienceInfo(singletonList(new Experience(ANY_TITLE, ANY_COMPANY, ANY_URL, ANY_DESCRIPTION, ANY_START_DATE, ANY_END_DATE, singletonList(new Task(ANY_TASK_DESCRIPTION)))));
         List<ExperienceEntity> experienceEntity = singletonList(new ExperienceEntity(ANY_LANGUAGE, ANY_TITLE, ANY_COMPANY, ANY_URL, ANY_DESCRIPTION, ANY_START_DATE, ANY_END_DATE, singletonList(new TaskEntity(ANY_TASK_DESCRIPTION))));
         when(experienceMongo.findAllByLanguage(ANY_LANGUAGE)).thenReturn(experienceEntity);
 
-        List<Experience> experience = resumeMongoRepository.getExperienceInfoBy(ANY_LANGUAGE);
+        ExperienceInfo experience = resumeMongoRepository.getExperienceInfoBy(ANY_LANGUAGE);
 
         Assert.assertThat(experience, is(equalTo(expected)));
     }
