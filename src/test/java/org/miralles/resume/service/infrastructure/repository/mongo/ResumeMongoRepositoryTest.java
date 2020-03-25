@@ -14,8 +14,6 @@ import org.miralles.resume.service.infrastructure.repository.mongo.model.TaskEnt
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import static java.util.Collections.singletonList;
