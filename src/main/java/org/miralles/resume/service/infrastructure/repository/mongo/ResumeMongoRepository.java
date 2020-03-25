@@ -5,7 +5,6 @@ import org.miralles.resume.service.domain.entity.Education;
 import org.miralles.resume.service.domain.entity.EducationInfo;
 import org.miralles.resume.service.domain.entity.Experience;
 import org.miralles.resume.service.domain.entity.ExperienceInfo;
-import org.miralles.resume.service.domain.entity.Task;
 import org.miralles.resume.service.domain.port.secondary.ResumeRepository;
 import org.miralles.resume.service.infrastructure.adapter.ContactInfoAdapter;
 import org.miralles.resume.service.infrastructure.adapter.EducationAdapter;
@@ -65,6 +64,12 @@ public class ResumeMongoRepository implements ResumeRepository {
     @Override
     public ExperienceInfo getExperienceInfoBy(final String language) {
         List<ExperienceEntity> experiences = experienceMongo.findAllByLanguage(language);
+
+        for (ExperienceEntity entity : experiences) {
+            logger.info("Info retrieved from the mongo repository for experience: {}", entity);
+        }
+
+
         return new ExperienceInfo(adapt(experiences));
     }
 
