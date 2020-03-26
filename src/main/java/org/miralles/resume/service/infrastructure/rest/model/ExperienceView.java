@@ -1,8 +1,5 @@
 package org.miralles.resume.service.infrastructure.rest.model;
 
-import org.miralles.resume.service.domain.entity.Experience;
-import org.miralles.resume.service.domain.entity.Task;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -10,70 +7,70 @@ import java.util.Objects;
 import static java.util.Collections.unmodifiableList;
 
 public class ExperienceView {
-    private final String title;
-    private final String company;
-    private final String url;
-    private final String roleDescription;
-    private final String startDate;
-    private final String endDate;
-    private final List<Task> tasks;
+    private final String titleView;
+    private final String companyView;
+    private final String urlView;
+    private final String roleDescriptionView;
+    private final String startDateView;
+    private final String endDateView;
+    private final List<TaskView> tasksView;
 
 
-    public ExperienceView(final String title, final String company, final String url, final String roleDescription,
-                      final String startDate, final String endDate, final List<Task> tasks) {
-        this.title = title;
-        this.company = company;
-        this.url = url;
-        this.roleDescription = roleDescription;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.tasks = unmodifiableList(new ArrayList<>(tasks));
+    public ExperienceView(final String titleView, final String companyView, final String urlView, final String roleDescriptionView,
+                          final String startDateView, final String endDateView, final List<TaskView> tasksView) {
+        this.titleView = titleView;
+        this.companyView = companyView;
+        this.urlView = urlView;
+        this.roleDescriptionView = roleDescriptionView;
+        this.startDateView = startDateView;
+        this.endDateView = endDateView;
+        this.tasksView = unmodifiableList(new ArrayList<>(tasksView));
     }
 
-    public String getTitle() {
-        return title;
+    public String getTitleView() {
+        return titleView;
     }
 
-    public String getCompany() {
-        return company;
+    public String getCompanyView() {
+        return companyView;
     }
 
-    public String getUrl() {
-        return url;
+    public String getUrlView() {
+        return urlView;
     }
 
-    public String getRoleDescription() {
-        return roleDescription;
+    public String getRoleDescriptionView() {
+        return roleDescriptionView;
     }
 
-    public String getStartDate() {
-        return startDate;
+    public String getStartDateView() {
+        return startDateView;
     }
 
-    public String getEndDate() {
-        return endDate;
+    public String getEndDateView() {
+        return endDateView;
     }
 
-    public List<Task> getTasks() {
-        return tasks;
+    public List<TaskView> getTasksView() {
+        return tasksView;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Experience)) return false;
-        Experience that = (Experience) o;
-        return Objects.equals(getTitle(), that.getTitle()) &&
-                Objects.equals(getCompany(), that.getCompany()) &&
-                Objects.equals(getUrl(), that.getUrl()) &&
-                Objects.equals(getRoleDescription(), that.getRoleDescription()) &&
-                Objects.equals(getStartDate(), that.getStartDate()) &&
-                Objects.equals(getEndDate(), that.getEndDate()) &&
-                Objects.equals(getTasks(), that.getTasks());
+        if (!(o instanceof ExperienceView)) return false;
+        ExperienceView that = (ExperienceView) o;
+        return Objects.equals(getTitleView(), that.getTitleView()) &&
+                Objects.equals(getCompanyView(), that.getCompanyView()) &&
+                Objects.equals(getUrlView(), that.getUrlView()) &&
+                Objects.equals(getRoleDescriptionView(), that.getRoleDescriptionView()) &&
+                Objects.equals(getStartDateView(), that.getStartDateView()) &&
+                Objects.equals(getEndDateView(), that.getEndDateView()) &&
+                Objects.equals(getTasksView(), that.getTasksView());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getTitle(), getCompany(), getUrl(), getRoleDescription(), getStartDate(), getEndDate(), getTasks());
+        return Objects.hash(getTitleView(), getCompanyView(), getUrlView(), getRoleDescriptionView(), getStartDateView(), getEndDateView(), getTasksView());
     }
 }

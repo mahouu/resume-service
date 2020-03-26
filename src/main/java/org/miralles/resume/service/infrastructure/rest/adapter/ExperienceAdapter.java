@@ -2,6 +2,7 @@ package org.miralles.resume.service.infrastructure.rest.adapter;
 
 import org.miralles.resume.service.domain.entity.ExperienceInfo;
 import org.miralles.resume.service.infrastructure.rest.model.ExperienceView;
+import org.miralles.resume.service.infrastructure.rest.model.TaskView;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,7 +20,10 @@ public class ExperienceAdapter {//TODO implement test
                                 experience.getRoleDescription(),
                                 experience.getStartDate(),
                                 experience.getEndDate(),
-                                experience.getTasks()))
+                                experience.getTasks()
+                                        .stream()
+                                        .map(task -> new TaskView(task.getDescription()))
+                                        .collect(Collectors.toList())))
                 .collect(Collectors.toList());
     }
 }
