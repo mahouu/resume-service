@@ -17,7 +17,7 @@ public final class ExperienceInfoView {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public final boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof ExperienceInfoView)) return false;
         ExperienceInfoView that = (ExperienceInfoView) o;
@@ -25,7 +25,7 @@ public final class ExperienceInfoView {
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         return Objects.hash(getExperienceInfoViews());
     }
 }

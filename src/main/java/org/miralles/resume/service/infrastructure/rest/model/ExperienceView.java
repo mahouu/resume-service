@@ -6,7 +6,7 @@ import java.util.Objects;
 
 import static java.util.Collections.unmodifiableList;
 
-public class ExperienceView {
+public final class ExperienceView {
     private final String titleView;
     private final String companyView;
     private final String urlView;
@@ -56,7 +56,7 @@ public class ExperienceView {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public final boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof ExperienceView)) return false;
         ExperienceView that = (ExperienceView) o;
@@ -70,7 +70,7 @@ public class ExperienceView {
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         return Objects.hash(getTitleView(), getCompanyView(), getUrlView(), getRoleDescriptionView(), getStartDateView(), getEndDateView(), getTasksView());
     }
 }

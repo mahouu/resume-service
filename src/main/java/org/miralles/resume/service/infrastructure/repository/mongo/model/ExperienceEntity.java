@@ -38,18 +38,6 @@ public class ExperienceEntity {
         return company;
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public String getRoleDescription() {
-        return roleDescription;
-    }
-
-    public String getStartDate() {
-        return startDate;
-    }
-
     public String getEndDate() {
         return endDate;
     }
@@ -62,12 +50,16 @@ public class ExperienceEntity {
         return language;
     }
 
-    public void setLanguage(String language) {
-        this.language = language;
+    public String getUrl() {
+        return url;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public String getRoleDescription() {
+        return roleDescription;
+    }
+
+    public String getStartDate() {
+        return startDate;
     }
 
     public void setCompany(String company) {
@@ -84,6 +76,14 @@ public class ExperienceEntity {
 
     public void setStartDate(String startDate) {
         this.startDate = startDate;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setEndDate(String endDate) {
