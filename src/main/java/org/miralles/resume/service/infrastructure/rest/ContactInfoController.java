@@ -23,7 +23,7 @@ public class ContactInfoController {
 
     @CrossOrigin(origins = "http://192.168.1.148:3000")//TODO extract to configuration
     @GetMapping(value = "/contactInfo")
-    public ResponseEntity<ResumeView> getAllEmployees() {
+    public ResponseEntity<ResumeView> getAllContactInfo() {
 
         ResumeResponse resumeResponse = resumeUseCase.getPersonalInfo();
 

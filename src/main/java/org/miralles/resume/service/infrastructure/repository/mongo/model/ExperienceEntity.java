@@ -38,18 +38,6 @@ public class ExperienceEntity {
         return company;
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public String getRoleDescription() {
-        return roleDescription;
-    }
-
-    public String getStartDate() {
-        return startDate;
-    }
-
     public String getEndDate() {
         return endDate;
     }
@@ -62,12 +50,16 @@ public class ExperienceEntity {
         return language;
     }
 
-    public void setLanguage(String language) {
-        this.language = language;
+    public String getUrl() {
+        return url;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public String getRoleDescription() {
+        return roleDescription;
+    }
+
+    public String getStartDate() {
+        return startDate;
     }
 
     public void setCompany(String company) {
@@ -86,6 +78,14 @@ public class ExperienceEntity {
         this.startDate = startDate;
     }
 
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
@@ -95,7 +95,7 @@ public class ExperienceEntity {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public final boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof ExperienceEntity)) return false;
         ExperienceEntity that = (ExperienceEntity) o;
@@ -110,7 +110,21 @@ public class ExperienceEntity {
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         return Objects.hash(getLanguage(), getTitle(), getCompany(), getUrl(), getRoleDescription(), getStartDate(), getEndDate(), getTasks());
+    }
+
+    @Override
+    public String toString() {
+        return "ExperienceEntity{" +
+                "language='" + language + '\'' +
+                ", title='" + title + '\'' +
+                ", company='" + company + '\'' +
+                ", url='" + url + '\'' +
+                ", roleDescription='" + roleDescription + '\'' +
+                ", startDate='" + startDate + '\'' +
+                ", endDate='" + endDate + '\'' +
+                ", tasks=" + tasks +
+                '}';
     }
 }

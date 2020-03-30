@@ -26,7 +26,7 @@ public class EducationController {
 
     @CrossOrigin(origins = "http://192.168.1.148:3000")//TODO extract to configuration
     @GetMapping(value = "/education/{language}")
-    public ResponseEntity<EducationInfoView> getAllEmployees(@PathVariable final String language) {
+    public ResponseEntity<EducationInfoView> getAllEducation(@PathVariable final String language) {
 
         EducationInfo educationInfo = educationUseCase.execute(language);
 

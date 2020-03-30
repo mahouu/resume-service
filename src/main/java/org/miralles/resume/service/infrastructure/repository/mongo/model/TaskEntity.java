@@ -29,4 +29,11 @@ public class TaskEntity {
     public final int hashCode() {
         return Objects.hash(getTaskDescription());
     }
+
+    @Override
+    public String toString() {
+        return "TaskEntity{" +
+                "taskDescription='" + taskDescription + '\'' +
+                '}';
+    }
 }
