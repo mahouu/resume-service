@@ -1,0 +1,1 @@
+db.skill.insert({"language":"EN", "description":"ANY_DESC","level":"ANY_LEVEL","keywords":["key1","key2"]})

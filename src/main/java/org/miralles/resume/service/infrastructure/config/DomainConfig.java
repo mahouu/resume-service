@@ -3,6 +3,7 @@ package org.miralles.resume.service.infrastructure.config;
 import org.miralles.resume.service.domain.port.primary.EducationUseCase;
 import org.miralles.resume.service.domain.port.primary.ExperienceUseCase;
 import org.miralles.resume.service.domain.port.primary.ResumeUseCase;
+import org.miralles.resume.service.domain.port.primary.SkillUseCase;
 import org.miralles.resume.service.domain.port.secondary.ResumeRepository;
 import org.miralles.resume.service.infrastructure.adapter.ContactInfoAdapter;
 import org.miralles.resume.service.infrastructure.adapter.EducationAdapter;
@@ -27,6 +28,11 @@ public class DomainConfig {
     @Bean
     public ExperienceUseCase experienceUseCase(final ResumeRepository resumeRepository){
         return new ExperienceUseCase(resumeRepository);
+    }
+
+    @Bean
+    public SkillUseCase skillUseCase(){
+        return new SkillUseCase();//TODO add repository
     }
 
     @Bean

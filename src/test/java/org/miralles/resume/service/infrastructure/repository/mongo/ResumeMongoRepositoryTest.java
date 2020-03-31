@@ -1,15 +1,18 @@
 package org.miralles.resume.service.infrastructure.repository.mongo;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.miralles.resume.service.domain.entity.Experience;
 import org.miralles.resume.service.domain.entity.ExperienceInfo;
+import org.miralles.resume.service.domain.entity.Skill;
+import org.miralles.resume.service.domain.entity.SkillInfo;
+import org.miralles.resume.service.domain.entity.SkillKeyword;
 import org.miralles.resume.service.domain.entity.Task;
 import org.miralles.resume.service.infrastructure.adapter.ContactInfoAdapter;
 import org.miralles.resume.service.infrastructure.adapter.EducationAdapter;
 import org.miralles.resume.service.infrastructure.repository.mongo.model.ExperienceEntity;
+import org.miralles.resume.service.infrastructure.repository.mongo.model.SkillEntity;
 import org.miralles.resume.service.infrastructure.repository.mongo.model.TaskEntity;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -19,6 +22,7 @@ import java.util.List;
 import static java.util.Collections.singletonList;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -31,6 +35,8 @@ public class ResumeMongoRepositoryTest {
     private static final String ANY_START_DATE = "ANY_START_DATE";
     private static final String ANY_END_DATE = "ANY_END_DATE";
     private static final String ANY_TASK_DESCRIPTION = "ANY_TASK_DESCRIPTION";
+    private static final String ANY_LEVEL = "ANY_LEVEL";
+    private static final String ANY_SKILL = "ANY_SKILL";
     @Mock
     private ContactInfoMongo contactInfoMongo;
     @Mock
@@ -42,10 +48,12 @@ public class ResumeMongoRepositoryTest {
     private ResumeMongoRepository resumeMongoRepository;
     @Mock
     private ExperienceMongo experienceMongo;
+    @Mock
+    private SkillMongo skillMongo;
 
     @Before
     public void init() {
-        resumeMongoRepository = new ResumeMongoRepository(contactInfoMongo, educationMongo, contactInfoAdapter, educationAdapter, experienceMongo);
+        resumeMongoRepository = new ResumeMongoRepository(contactInfoMongo, educationMongo, contactInfoAdapter, educationAdapter, experienceMongo, skillMongo);
     }
 
     @Test
@@ -56,6 +64,16 @@ public class ResumeMongoRepositoryTest {
 
         ExperienceInfo experience = resumeMongoRepository.getExperienceInfoBy(ANY_LANGUAGE);
 
-        Assert.assertThat(experience, is(equalTo(expected)));
+        assertThat(experience, is(equalTo(expected)));
+    }
+
+    @Test
+    public void givenALanguage_thenRetrieveAllSkillsInfo() {
+        when(skillMongo.findAllByLanguage(ANY_LANGUAGE)).thenReturn(singletonList(new SkillEntity(ANY_DESCRIPTION, ANY_LEVEL, singletonList(ANY_SKILL), ANY_LANGUAGE)));
+        SkillInfo expected = new SkillInfo(singletonList(new Skill(ANY_DESCRIPTION, ANY_LEVEL, singletonList(new SkillKeyword(ANY_SKILL)))));
+
+        SkillInfo skillInfo = resumeMongoRepository.getSkillInfoBy(ANY_LANGUAGE);
+
+        assertThat(skillInfo, is(equalTo(expected)));
     }
 }
