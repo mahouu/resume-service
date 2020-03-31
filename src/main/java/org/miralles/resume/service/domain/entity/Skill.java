@@ -13,7 +13,7 @@ public final class Skill {
     public Skill(final String description, final String level, final List<SkillKeyword> keywords) {
         this.description = description;
         this.level = level;
-        this.keywords = Collections.unmodifiableList(new ArrayList<>(keywords));;
+        this.keywords = Collections.unmodifiableList(new ArrayList<>(keywords));
     }
 
     public final String getDescription() {
