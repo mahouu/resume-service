@@ -53,12 +53,14 @@ public class ContactInfoMongoRepositoryTest {
     private ResumeMongoRepository resumeMongoRepository;
     @Mock
     private ExperienceMongo experienceMongo;
+    @Mock
+    private SkillMongo skillMongo;
 
     @Before
     public void setUp() {
         List<EducationEntity> educationEntity = List.of(new EducationEntity(ANY_LANGUAGE, ANY_DATE, null, ANY_TITLE, ANY_SUBTITLE, ANY_DESCRIPTION));
         when(educationMongo.findAllByLanguage(ANY_LANGUAGE)).thenReturn(educationEntity);
-        resumeMongoRepository = new ResumeMongoRepository(contactInfoMongo, educationMongo, contactInfoAdapter, educationAdapter, experienceMongo);
+        resumeMongoRepository = new ResumeMongoRepository(contactInfoMongo, educationMongo, contactInfoAdapter, educationAdapter, experienceMongo, skillMongo);
     }
 
     @Test
