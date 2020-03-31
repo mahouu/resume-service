@@ -32,8 +32,8 @@ public class DomainConfig {
     }
 
     @Bean
-    public SkillUseCase skillUseCase() {
-        return new SkillUseCase();//TODO add repository
+    public SkillUseCase skillUseCase(final ResumeRepository resumeRepository) {
+        return new SkillUseCase(resumeRepository);
     }
 
     @Bean

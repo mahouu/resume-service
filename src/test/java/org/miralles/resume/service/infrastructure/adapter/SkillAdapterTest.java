@@ -6,7 +6,6 @@ import org.miralles.resume.service.domain.entity.Skill;
 import org.miralles.resume.service.domain.entity.SkillKeyword;
 import org.miralles.resume.service.infrastructure.repository.mongo.model.SkillEntity;
 
-import java.util.Collections;
 import java.util.List;
 
 import static java.util.Collections.singletonList;
@@ -22,7 +21,7 @@ public class SkillAdapterTest {
     @Test
     public void givenACorrectSkillEntity_thenRetrieveAnAdaptedSkill() {
         SkillAdapter skillAdapter = new SkillAdapter();
-        List<SkillEntity> skillsInfo = Collections.singletonList(new SkillEntity(ANY_DESCRIPTION, ANY_LEVEL, Collections.singletonList(ANY_SKILL), ANY_LANGUAGE));
+        List<SkillEntity> skillsInfo = singletonList(new SkillEntity(ANY_DESCRIPTION, ANY_LEVEL, singletonList(ANY_SKILL), ANY_LANGUAGE));
 
         List<Skill> adapted = skillAdapter.adaptSkillEntity(skillsInfo);
 
