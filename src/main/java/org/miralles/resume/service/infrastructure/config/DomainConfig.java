@@ -11,6 +11,7 @@ import org.miralles.resume.service.infrastructure.adapter.SkillAdapter;
 import org.miralles.resume.service.infrastructure.rest.adapter.ContactInfoViewAdapter;
 import org.miralles.resume.service.infrastructure.rest.adapter.EducationViewAdapter;
 import org.miralles.resume.service.infrastructure.rest.adapter.ExperienceAdapter;
+import org.miralles.resume.service.infrastructure.rest.adapter.SkillViewAdapter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -64,5 +65,10 @@ public class DomainConfig {
     @Bean
     public SkillAdapter skillAdapter() {
         return new SkillAdapter();
+    }
+
+    @Bean
+    public SkillViewAdapter skillViewAdapter(){
+        return new SkillViewAdapter();
     }
 }

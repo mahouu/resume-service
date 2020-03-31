@@ -12,7 +12,7 @@ import static java.util.Collections.singletonList;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 
-public class SkillAdapterTest {
+public class SkillViewAdapterTest {
     private static final String ANY_DESCRIPTION = "ANY_DESCRIPTION";
     private static final String ANY_LEVEL = "ANY_LEVEL";
     private static final String ANY_SKILL = "ANY_SKILL";

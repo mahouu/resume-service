@@ -1,8 +1,11 @@
 package org.miralles.resume.service.infrastructure.repository.mongo.model;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.List;
 import java.util.Objects;
 
+@Document(collection = "skill")
 public class SkillEntity {
     private String language;
 
