@@ -10,6 +10,7 @@ import org.miralles.resume.service.domain.entity.EducationInfo;
 import org.miralles.resume.service.domain.entity.LocationInfo;
 import org.miralles.resume.service.infrastructure.adapter.ContactInfoAdapter;
 import org.miralles.resume.service.infrastructure.adapter.EducationAdapter;
+import org.miralles.resume.service.infrastructure.adapter.SkillAdapter;
 import org.miralles.resume.service.infrastructure.repository.mongo.model.EducationEntity;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -55,12 +56,14 @@ public class ContactInfoMongoRepositoryTest {
     private ExperienceMongo experienceMongo;
     @Mock
     private SkillMongo skillMongo;
+    @Mock
+    private SkillAdapter skillAdapter;
 
     @Before
     public void setUp() {
         List<EducationEntity> educationEntity = List.of(new EducationEntity(ANY_LANGUAGE, ANY_DATE, null, ANY_TITLE, ANY_SUBTITLE, ANY_DESCRIPTION));
         when(educationMongo.findAllByLanguage(ANY_LANGUAGE)).thenReturn(educationEntity);
-        resumeMongoRepository = new ResumeMongoRepository(contactInfoMongo, educationMongo, contactInfoAdapter, educationAdapter, experienceMongo, skillMongo);
+        resumeMongoRepository = new ResumeMongoRepository(contactInfoMongo, educationMongo, contactInfoAdapter, educationAdapter, experienceMongo, skillMongo, skillAdapter);
     }
 
     @Test

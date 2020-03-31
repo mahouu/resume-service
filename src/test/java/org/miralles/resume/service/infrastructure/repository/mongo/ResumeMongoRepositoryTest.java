@@ -11,6 +11,7 @@ import org.miralles.resume.service.domain.entity.SkillKeyword;
 import org.miralles.resume.service.domain.entity.Task;
 import org.miralles.resume.service.infrastructure.adapter.ContactInfoAdapter;
 import org.miralles.resume.service.infrastructure.adapter.EducationAdapter;
+import org.miralles.resume.service.infrastructure.adapter.SkillAdapter;
 import org.miralles.resume.service.infrastructure.repository.mongo.model.ExperienceEntity;
 import org.miralles.resume.service.infrastructure.repository.mongo.model.SkillEntity;
 import org.miralles.resume.service.infrastructure.repository.mongo.model.TaskEntity;
@@ -50,10 +51,12 @@ public class ResumeMongoRepositoryTest {
     private ExperienceMongo experienceMongo;
     @Mock
     private SkillMongo skillMongo;
+    @Mock
+    private SkillAdapter skillAdapter;
 
     @Before
     public void init() {
-        resumeMongoRepository = new ResumeMongoRepository(contactInfoMongo, educationMongo, contactInfoAdapter, educationAdapter, experienceMongo, skillMongo);
+        resumeMongoRepository = new ResumeMongoRepository(contactInfoMongo, educationMongo, contactInfoAdapter, educationAdapter, experienceMongo, skillMongo, skillAdapter);
     }
 
     @Test
@@ -69,8 +72,11 @@ public class ResumeMongoRepositoryTest {
 
     @Test
     public void givenALanguage_thenRetrieveAllSkillsInfo() {
-        when(skillMongo.findAllByLanguage(ANY_LANGUAGE)).thenReturn(singletonList(new SkillEntity(ANY_DESCRIPTION, ANY_LEVEL, singletonList(ANY_SKILL), ANY_LANGUAGE)));
-        SkillInfo expected = new SkillInfo(singletonList(new Skill(ANY_DESCRIPTION, ANY_LEVEL, singletonList(new SkillKeyword(ANY_SKILL)))));
+        List<SkillEntity> skillEntity = singletonList(new SkillEntity(ANY_DESCRIPTION, ANY_LEVEL, singletonList(ANY_SKILL), ANY_LANGUAGE));
+        when(skillMongo.findAllByLanguage(ANY_LANGUAGE)).thenReturn(skillEntity);
+        Skill skill = new Skill(ANY_DESCRIPTION, ANY_LEVEL, singletonList(new SkillKeyword(ANY_SKILL)));
+        SkillInfo expected = new SkillInfo(singletonList(skill));
+        when(skillAdapter.adaptSkillEntity(skillEntity)).thenReturn(singletonList(skill));
 
         SkillInfo skillInfo = resumeMongoRepository.getSkillInfoBy(ANY_LANGUAGE);
 

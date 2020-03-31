@@ -12,6 +12,7 @@ import org.miralles.resume.service.domain.port.secondary.ResumeRepository;
 import org.miralles.resume.service.infrastructure.adapter.ContactInfoAdapter;
 import org.miralles.resume.service.infrastructure.adapter.EducationAdapter;
 import org.miralles.resume.service.infrastructure.adapter.ExperienceAdapter;
+import org.miralles.resume.service.infrastructure.adapter.SkillAdapter;
 import org.miralles.resume.service.infrastructure.repository.mongo.model.EducationEntity;
 import org.miralles.resume.service.infrastructure.repository.mongo.model.ExperienceEntity;
 import org.miralles.resume.service.infrastructure.repository.mongo.model.ResumeEntity;
@@ -29,6 +30,7 @@ public class ResumeMongoRepository implements ResumeRepository {
     private static final String ANY_NAME = "Mauricio";//TODO delete this!!!
     private final ContactInfoAdapter contactInfoAdapter;
     private final EducationAdapter educationAdapter;
+    private final SkillAdapter skillAdapter;
     private ContactInfoMongo contactInfoMongo;
     private EducationMongo educationMongo;
     private ExperienceMongo experienceMongo;
@@ -39,13 +41,15 @@ public class ResumeMongoRepository implements ResumeRepository {
                                  final ContactInfoAdapter contactInfoAdapter,
                                  final EducationAdapter educationAdapter,
                                  final ExperienceMongo experienceMongo,
-                                 final SkillMongo skillMongo) {
+                                 final SkillMongo skillMongo,
+                                 final SkillAdapter skillAdapter) {
         this.contactInfoMongo = contactInfoMongo;
         this.educationMongo = educationMongo;
         this.contactInfoAdapter = contactInfoAdapter;
         this.educationAdapter = educationAdapter;
         this.experienceMongo = experienceMongo;
         this.skillMongo = skillMongo;
+        this.skillAdapter = skillAdapter;
     }
 
     @Override
@@ -81,29 +85,14 @@ public class ResumeMongoRepository implements ResumeRepository {
     public SkillInfo getSkillInfoBy(final String language) {
         List<SkillEntity> skillsInfo = skillMongo.findAllByLanguage(language);
 
-        return new SkillInfo(adaptSkillEntity(skillsInfo));
+        return new SkillInfo(skillAdapter.adaptSkillEntity(skillsInfo));
     }
 
-    private List<Skill> adaptSkillEntity(List<SkillEntity> skillsInfo) {
-        return skillsInfo.stream()
-                .map(this::apply)
-                .collect(Collectors.toList());
-    }
 
-    private List<SkillKeyword> adaptKeywords(SkillEntity skillEntity) {
-        return skillEntity.getKeywords()
-                .stream()
-                .map(SkillKeyword::new)
-                .collect(Collectors.toList());
-    }
 
-    private List<Experience> adaptExperience(final List<ExperienceEntity> experiences) {//TODO extract to an adapter
+    private List<Experience> adaptExperience(final List<ExperienceEntity> experiences) {
         return experiences.stream()
                 .map(ExperienceAdapter::adapt)
                 .collect(Collectors.toList());
-    }
-
-    private Skill apply(SkillEntity skillEntity) {
-        return new Skill(skillEntity.getDescription(), skillEntity.getLevel(), adaptKeywords(skillEntity));
     }
 }
