@@ -22,13 +22,14 @@ public class EducationAdapterTest {
     private static final String SEPARATOR = " - ";
     private static final String ANY_COMPLETE_DATE = ANY_START_DATE + SEPARATOR + ANY_END_DATE;
     private static final String NO_END_DATE = null;
+    private static final Integer ANY_ORDER = 1;
     private final EducationAdapter educationAdapter = new EducationAdapter();
 
     @Test
     public void givenAnEducationEntity_thenConvertAnEducationWithFullDateFormatted() {
         Education education = new Education(ANY_LANGUAGE, ANY_COMPLETE_DATE, ANY_TITLE, ANY_SUBTITLE, ANY_DESCRIPTION);
         List<Education> expected = Collections.singletonList(education);
-        EducationEntity educationEntity = new EducationEntity(ANY_LANGUAGE, ANY_START_DATE, ANY_END_DATE, ANY_TITLE, ANY_SUBTITLE, ANY_DESCRIPTION);
+        EducationEntity educationEntity = new EducationEntity(ANY_LANGUAGE, ANY_START_DATE, ANY_END_DATE, ANY_TITLE, ANY_SUBTITLE, ANY_DESCRIPTION, ANY_ORDER);
 
         List<Education> educations = educationAdapter.adaptEducation(Collections.singletonList(educationEntity));
 
@@ -39,7 +40,7 @@ public class EducationAdapterTest {
     public void givenAnEducationEntityWithOutEndDate_thenConvertAnEducation() {
         Education education = new Education(ANY_LANGUAGE, ANY_START_DATE, ANY_TITLE, ANY_SUBTITLE, ANY_DESCRIPTION);
         List<Education> expected = Collections.singletonList(education);
-        EducationEntity educationEntity = new EducationEntity(ANY_LANGUAGE, ANY_START_DATE, NO_END_DATE, ANY_TITLE, ANY_SUBTITLE, ANY_DESCRIPTION);
+        EducationEntity educationEntity = new EducationEntity(ANY_LANGUAGE, ANY_START_DATE, NO_END_DATE, ANY_TITLE, ANY_SUBTITLE, ANY_DESCRIPTION, ANY_ORDER);
 
         List<Education> educations = educationAdapter.adaptEducation(Collections.singletonList(educationEntity));
 

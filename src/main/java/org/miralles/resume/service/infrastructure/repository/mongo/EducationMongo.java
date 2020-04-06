@@ -4,9 +4,9 @@ import org.miralles.resume.service.infrastructure.repository.mongo.model.Educati
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import java.util.LinkedList;
 
 @Repository
 public interface EducationMongo extends MongoRepository<EducationEntity, String> {
-    List<EducationEntity> findAllByLanguage(String language);
+    LinkedList<EducationEntity> findAllByLanguageOrderByOrderAsc(String language);
 }

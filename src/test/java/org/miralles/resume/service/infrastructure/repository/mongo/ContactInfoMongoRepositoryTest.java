@@ -15,6 +15,7 @@ import org.miralles.resume.service.infrastructure.repository.mongo.model.Educati
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import static java.util.Collections.singletonList;
@@ -42,6 +43,7 @@ public class ContactInfoMongoRepositoryTest {
     private static final String ANY_CITY = "ANY_CITY";
     private static final String ANY_REGION = "ANY_REGION";
     private static final String ANY_COUNTRY_CODE = "ANY_COUNTRY_CODE";
+    private static final Integer ANY_ORDER = 1;
 
     @Mock
     private ContactInfoMongo contactInfoMongo;
@@ -61,8 +63,9 @@ public class ContactInfoMongoRepositoryTest {
 
     @Before
     public void setUp() {
-        List<EducationEntity> educationEntity = List.of(new EducationEntity(ANY_LANGUAGE, ANY_DATE, null, ANY_TITLE, ANY_SUBTITLE, ANY_DESCRIPTION));
-        when(educationMongo.findAllByLanguage(ANY_LANGUAGE)).thenReturn(educationEntity);
+        LinkedList<EducationEntity> educationEntityLinkedList =  new LinkedList<>();
+        educationEntityLinkedList.add(new EducationEntity(ANY_LANGUAGE, ANY_DATE, null, ANY_TITLE, ANY_SUBTITLE, ANY_DESCRIPTION, ANY_ORDER));
+        when(educationMongo.findAllByLanguageOrderByOrderAsc(ANY_LANGUAGE)).thenReturn(educationEntityLinkedList);
         resumeMongoRepository = new ResumeMongoRepository(contactInfoMongo, educationMongo, contactInfoAdapter, educationAdapter, experienceMongo, skillMongo, skillAdapter);
     }
 
@@ -90,8 +93,9 @@ public class ContactInfoMongoRepositoryTest {
 
     @Test
     public void retrieveEducationInfoWithEndDate() {
-        List<EducationEntity> educationEntity = List.of(new EducationEntity(ANY_LANGUAGE, ANY_DATE, ANY_DATE, ANY_TITLE, ANY_SUBTITLE, ANY_DESCRIPTION));
-        when(educationMongo.findAllByLanguage(ANY_LANGUAGE)).thenReturn(educationEntity);
+        LinkedList<EducationEntity> educationEntityLinkedList = new LinkedList<>();
+        educationEntityLinkedList.add(new EducationEntity(ANY_LANGUAGE, ANY_DATE, ANY_DATE, ANY_TITLE, ANY_SUBTITLE, ANY_DESCRIPTION, ANY_ORDER));
+        when(educationMongo.findAllByLanguageOrderByOrderAsc(ANY_LANGUAGE)).thenReturn(educationEntityLinkedList);
         EducationInfo expectedEducationInfo = new EducationInfo(singletonList(new Education(ANY_LANGUAGE, ANY_FULL_DATE, ANY_TITLE, ANY_SUBTITLE, ANY_DESCRIPTION)));
         when(educationAdapter.adaptEducation(any())).thenReturn(singletonList(new Education(ANY_LANGUAGE, ANY_FULL_DATE, ANY_TITLE, ANY_SUBTITLE, ANY_DESCRIPTION)));
 
