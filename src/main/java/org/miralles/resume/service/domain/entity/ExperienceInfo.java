@@ -1,6 +1,6 @@
 package org.miralles.resume.service.domain.entity;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,7 +10,7 @@ public final class ExperienceInfo {
     private final List<Experience> experiences;
 
     public ExperienceInfo(List<Experience> experiences) {
-        this.experiences = unmodifiableList(new ArrayList<>(experiences));
+        this.experiences = unmodifiableList(new LinkedList<>(experiences));
     }
 
     public List<Experience> getExperiences() {

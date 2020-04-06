@@ -5,9 +5,7 @@ import org.miralles.resume.service.domain.entity.Education;
 import org.miralles.resume.service.domain.entity.EducationInfo;
 import org.miralles.resume.service.domain.entity.Experience;
 import org.miralles.resume.service.domain.entity.ExperienceInfo;
-import org.miralles.resume.service.domain.entity.Skill;
 import org.miralles.resume.service.domain.entity.SkillInfo;
-import org.miralles.resume.service.domain.entity.SkillKeyword;
 import org.miralles.resume.service.domain.port.secondary.ResumeRepository;
 import org.miralles.resume.service.infrastructure.adapter.ContactInfoAdapter;
 import org.miralles.resume.service.infrastructure.adapter.EducationAdapter;
@@ -21,8 +19,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toCollection;
 
 @Repository
 public class ResumeMongoRepository implements ResumeRepository {
@@ -74,7 +74,7 @@ public class ResumeMongoRepository implements ResumeRepository {
 
     @Override
     public ExperienceInfo getExperienceInfoBy(final String language) {
-        List<ExperienceEntity> experiences = experienceMongo.findAllByLanguage(language);
+        LinkedList<ExperienceEntity> experiences = experienceMongo.findAllByLanguageOrderByOrderAsc(language);
 
         experiences.forEach(entity -> logger.info("Info retrieved from the mongo repository for experience: {}", entity));
 
@@ -89,10 +89,9 @@ public class ResumeMongoRepository implements ResumeRepository {
     }
 
 
-
-    private List<Experience> adaptExperience(final List<ExperienceEntity> experiences) {
+    private LinkedList<Experience> adaptExperience(final LinkedList<ExperienceEntity> experiences) {
         return experiences.stream()
                 .map(ExperienceAdapter::adapt)
-                .collect(Collectors.toList());
+                .collect(toCollection(LinkedList::new));
     }
 }

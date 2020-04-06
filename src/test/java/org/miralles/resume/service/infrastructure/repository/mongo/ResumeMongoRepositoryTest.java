@@ -18,6 +18,7 @@ import org.miralles.resume.service.infrastructure.repository.mongo.model.TaskEnt
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import static java.util.Collections.singletonList;
@@ -38,6 +39,7 @@ public class ResumeMongoRepositoryTest {
     private static final String ANY_TASK_DESCRIPTION = "ANY_TASK_DESCRIPTION";
     private static final String ANY_LEVEL = "ANY_LEVEL";
     private static final String ANY_SKILL = "ANY_SKILL";
+    private static final Integer ANY_ORDER =1;
     @Mock
     private ContactInfoMongo contactInfoMongo;
     @Mock
@@ -61,9 +63,12 @@ public class ResumeMongoRepositoryTest {
 
     @Test
     public void givenALanguage_thenRetrieveAllExperienceInfo() {
-        ExperienceInfo expected = new ExperienceInfo(singletonList(new Experience(ANY_TITLE, ANY_COMPANY, ANY_URL, ANY_DESCRIPTION, ANY_START_DATE, ANY_END_DATE, singletonList(new Task(ANY_TASK_DESCRIPTION)))));
-        List<ExperienceEntity> experienceEntity = singletonList(new ExperienceEntity(ANY_LANGUAGE, ANY_TITLE, ANY_COMPANY, ANY_URL, ANY_DESCRIPTION, ANY_START_DATE, ANY_END_DATE, singletonList(new TaskEntity(ANY_TASK_DESCRIPTION))));
-        when(experienceMongo.findAllByLanguage(ANY_LANGUAGE)).thenReturn(experienceEntity);
+        LinkedList<Experience> experienceLinkedList = new LinkedList<>();
+        experienceLinkedList.add(new Experience(ANY_TITLE, ANY_COMPANY, ANY_URL, ANY_DESCRIPTION, ANY_START_DATE, ANY_END_DATE, singletonList(new Task(ANY_TASK_DESCRIPTION))));
+        ExperienceInfo expected = new ExperienceInfo(experienceLinkedList);
+        LinkedList<ExperienceEntity> experienceEntity = new LinkedList<>();
+        experienceEntity.add(new ExperienceEntity(ANY_LANGUAGE, ANY_TITLE, ANY_COMPANY, ANY_URL, ANY_DESCRIPTION, ANY_START_DATE, ANY_END_DATE, singletonList(new TaskEntity(ANY_TASK_DESCRIPTION)), ANY_ORDER));
+        when(experienceMongo.findAllByLanguageOrderByOrderAsc(ANY_LANGUAGE)).thenReturn(experienceEntity);
 
         ExperienceInfo experience = resumeMongoRepository.getExperienceInfoBy(ANY_LANGUAGE);
 

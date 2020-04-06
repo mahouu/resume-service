@@ -7,6 +7,7 @@ import org.miralles.resume.service.domain.entity.Task;
 import org.miralles.resume.service.infrastructure.rest.model.ExperienceView;
 import org.miralles.resume.service.infrastructure.rest.model.TaskView;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import static java.util.Collections.singletonList;
@@ -30,7 +31,9 @@ public class ExperienceAdapterTest {
         Task task = new Task(ANY_TASK_DESCRIPTION);
         TaskView taskView = new TaskView(ANY_TASK_DESCRIPTION);
         Experience experience = new Experience(ANY_TITLE, ANY_COMPANY, ANY_URL, ANY_ROLE_DESCRIPTION, ANY_START_DATE, ANY_END_DATE, singletonList(task));
-        ExperienceInfo experienceInfo = new ExperienceInfo(singletonList(experience));
+        LinkedList<Experience> experiences = new LinkedList<>();
+        experiences.add(experience);
+        ExperienceInfo experienceInfo = new ExperienceInfo(experiences);
         ExperienceView experienceViewExpected = new ExperienceView(ANY_TITLE, ANY_COMPANY, ANY_URL, ANY_ROLE_DESCRIPTION, ANY_START_DATE, ANY_END_DATE, singletonList(taskView));
         List<ExperienceView> expected = singletonList(experienceViewExpected);
 

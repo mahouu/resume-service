@@ -16,10 +16,11 @@ public class ExperienceEntity {
     private String startDate;
     private String endDate;
     private List<TaskEntity> tasks;
+    private Integer order;
 
     public ExperienceEntity(final String language, final String title, final String company, final String url,
                             final String roleDescription, final String startDate, final String endDate,
-                            final List<TaskEntity> tasks) {
+                            final List<TaskEntity> tasks, final Integer order) {
         this.language = language;
         this.title = title;
         this.company = company;
@@ -28,6 +29,7 @@ public class ExperienceEntity {
         this.startDate = startDate;
         this.endDate = endDate;
         this.tasks = new ArrayList<>(tasks);
+        this.order = order;
     }
 
     public String getTitle() {
@@ -94,6 +96,14 @@ public class ExperienceEntity {
         this.tasks = tasks;
     }
 
+    public Integer getOrder() {
+        return order;
+    }
+
+    public void setOrder(Integer order) {
+        this.order = order;
+    }
+
     @Override
     public final boolean equals(Object o) {
         if (this == o) return true;
@@ -106,12 +116,13 @@ public class ExperienceEntity {
                 Objects.equals(getRoleDescription(), that.getRoleDescription()) &&
                 Objects.equals(getStartDate(), that.getStartDate()) &&
                 Objects.equals(getEndDate(), that.getEndDate()) &&
-                Objects.equals(getTasks(), that.getTasks());
+                Objects.equals(getTasks(), that.getTasks()) &&
+                Objects.equals(getOrder(), that.getOrder());
     }
 
     @Override
     public final int hashCode() {
-        return Objects.hash(getLanguage(), getTitle(), getCompany(), getUrl(), getRoleDescription(), getStartDate(), getEndDate(), getTasks());
+        return Objects.hash(getLanguage(), getTitle(), getCompany(), getUrl(), getRoleDescription(), getStartDate(), getEndDate(), getTasks(), getOrder());
     }
 
     @Override
@@ -125,6 +136,7 @@ public class ExperienceEntity {
                 ", startDate='" + startDate + '\'' +
                 ", endDate='" + endDate + '\'' +
                 ", tasks=" + tasks +
+                ", order=" + order +
                 '}';
     }
 }
