@@ -1,7 +1,7 @@
 package org.miralles.resume.service.domain.entity;
 
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,7 +9,7 @@ public final class EducationInfo {
     private final List<Education> educationInfoList;
 
     public EducationInfo(List<Education> education) {
-        this.educationInfoList = Collections.unmodifiableList(new ArrayList<>(education));
+        this.educationInfoList = Collections.unmodifiableList(new LinkedList<>(education));
     }
 
     public List<Education> getEducationInfoList() {

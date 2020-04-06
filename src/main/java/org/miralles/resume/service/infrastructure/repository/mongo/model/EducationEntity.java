@@ -1,5 +1,6 @@
 package org.miralles.resume.service.infrastructure.repository.mongo.model;
 
+import org.springframework.data.mongodb.core.aggregation.ArrayOperators;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Objects;
@@ -12,14 +13,16 @@ public class EducationEntity {
     private String title;
     private String subTitle;
     private String description;
+    private Integer order;
 
-    public EducationEntity(String language, String startDate, String endDate, String title, String subTitle, String description) {
+    public EducationEntity(final String language, final String startDate, final String endDate, final String title, final String subTitle, final String description, final Integer order) {
         this.language = language;
         this.startDate = startDate;
         this.endDate = endDate;
         this.title = title;
         this.subTitle = subTitle;
         this.description = description;
+        this.order = order;
     }
 
     public String getLanguage() {
@@ -70,6 +73,14 @@ public class EducationEntity {
         this.description = description;
     }
 
+    public Integer getOrder() {
+        return order;
+    }
+
+    public void setOrder(Integer order) {
+        this.order = order;
+    }
+
     @Override
     public final boolean equals(Object o) {
         if (this == o) return true;
@@ -80,12 +91,13 @@ public class EducationEntity {
                 Objects.equals(getEndDate(), that.getEndDate()) &&
                 Objects.equals(getTitle(), that.getTitle()) &&
                 Objects.equals(getSubTitle(), that.getSubTitle()) &&
-                Objects.equals(getDescription(), that.getDescription());
+                Objects.equals(getDescription(), that.getDescription()) &&
+                Objects.equals(getOrder(), that.getOrder());
     }
 
     @Override
     public final int hashCode() {
-        return Objects.hash(getLanguage(), getStartDate(), getEndDate(), getTitle(), getSubTitle(), getDescription());
+        return Objects.hash(getLanguage(), getStartDate(), getEndDate(), getTitle(), getSubTitle(), getDescription(), getOrder());
     }
 
     @Override
@@ -97,6 +109,7 @@ public class EducationEntity {
                 ", title='" + title + '\'' +
                 ", subTitle='" + subTitle + '\'' +
                 ", description='" + description + '\'' +
+                ", order='" + order + '\'' +
                 '}';
     }
 }

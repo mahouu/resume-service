@@ -64,7 +64,7 @@ public class ResumeMongoRepository implements ResumeRepository {
 
     @Override
     public EducationInfo getEducationInfoBy(final String language) {
-        List<EducationEntity> educationEntityList = educationMongo.findAllByLanguage(language);
+        LinkedList<EducationEntity> educationEntityList = educationMongo.findAllByLanguageOrderByOrderAsc(language);
         List<Education> educationInfoList = educationAdapter.adaptEducation(educationEntityList);
 
         logger.info("Info retrieved from the mongo repository for education: {}", educationEntityList);
