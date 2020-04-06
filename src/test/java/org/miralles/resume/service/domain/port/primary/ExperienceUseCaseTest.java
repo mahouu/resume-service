@@ -11,6 +11,8 @@ import org.miralles.resume.service.domain.port.secondary.ResumeRepository;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.LinkedList;
+
 import static java.util.Collections.singletonList;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
@@ -39,9 +41,11 @@ public class ExperienceUseCaseTest {
     @Test
     public void givenALanguage_ThenRetrieveAllTheExperience() {
         Experience expected = new Experience(ANY_TITTLE, ANY_COMPANY, ANY_URL, ANY_ROL_DESCRIPTION, ANY_START_DATE, ANY_END_DATE, singletonList(new Task(ANY_TASK_DESCRIPTION)));
-        ExperienceInfo expectedExperienceInfo = new ExperienceInfo(singletonList(expected));
+        LinkedList<Experience> expectedList = new LinkedList();
+        expectedList.add(expected);
+        ExperienceInfo expectedExperienceInfo = new ExperienceInfo(expectedList);
         when(resumeRepository.getExperienceInfoBy(ANY_LANGUAGE)).thenReturn(expectedExperienceInfo);
-        ExperienceInfo experienceInfoExpected = new ExperienceInfo(singletonList(expected));
+        ExperienceInfo experienceInfoExpected = new ExperienceInfo(expectedList);
 
         ExperienceInfo experience = useCase.execute(ANY_LANGUAGE);
 

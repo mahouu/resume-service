@@ -4,9 +4,9 @@ import org.miralles.resume.service.infrastructure.repository.mongo.model.Experie
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import java.util.LinkedList;
 
 @Repository
 public interface ExperienceMongo extends MongoRepository<ExperienceEntity, String> {
-    List<ExperienceEntity> findAllByLanguage(String language);
+    LinkedList<ExperienceEntity> findAllByLanguageOrderByOrderAsc(String language);
 }
