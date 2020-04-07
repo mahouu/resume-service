@@ -30,7 +30,7 @@
           </snapshots>
           <id>central</id>
           <name>libs-release</name>
-          <url>http://192.168.1.148:8081/artifactory/libs-release</url>
+          <url>http://raspagorda.duckdns.org:8081/artifactory/libs-release</url>
         </repository>
         <repository>
           <snapshots />
