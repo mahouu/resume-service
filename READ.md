@@ -14,7 +14,7 @@ https://hub.docker.com/r/rubygem/github-trello/
 As many of the configurations of the data base are passed as a configuration parameter, the way to execute the app is as
  the following example:
 
-`mvn spring-boot:run -DDATABASE_USER=myuser -DDATABASE_PASSWORD=mypassword -DDATABASE_NAME=resumedb`
+`mvn spring-boot:run -DDATABASE_USER=myuser -DDATABASE_PASSWORD=mypassword -DDATABASE_NAME=resumedb -DcorsIp=http://XXX.XXX.XXX.XXX:3000`
 
 
 How to install mongodb 3 in a raspberry environment:
@@ -43,3 +43,10 @@ Example of initial insertion for education:
 `db.education.insert({ "language":"EN", "startDate":"2015", "title":"Independient course. Software develop.", "subTitle":"Coursera Inc.", "description":"An introduction to interactive programming in python (part 1)" })`
 
 `db.education.insert({ "language":"EN", "startDate":"2013", "title":"Certification Databases", "subTitle":"Mongo university", "description":"m101j - mongodb certification." })`
+
+In prod environment we have a script to configure all the parameters `applyConfig.sh` the content of the file is as follows:
+`#!/bin/sh
+ export DATABASE_NAME=resumedb
+ export DATABASE_USER="myuser"
+ export DATABASE_PASSWORD="mypassword"
+ export CORS_IP=http://SOME_IP:SOME_PORT`
