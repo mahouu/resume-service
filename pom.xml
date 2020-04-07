@@ -38,7 +38,7 @@
 		<snapshotRepository>
 			<id>snapshots</id>
 			<name>c67feaa41a44-snapshots</name>
-			<url>http://192.168.1.148:8081/artifactory/ext-snapshot-local</url>
+			<url>http://raspagorda.duckdns.org:8081/artifactory/ext-snapshot-local</url>
 		</snapshotRepository>
 	</distributionManagement>
 
