@@ -51,6 +51,6 @@ jobs:
       with:
         java-version: 1.11
     - name: upload artifact
-      run: mvn deploy --file pom.xml
+      run: mvn deploy --file pom.xml --settings config/settings.xml
     name: Upload artifact
       
