@@ -68,7 +68,7 @@ public class DomainConfig {
     }
 
     @Bean
-    public SkillViewAdapter skillViewAdapter(){
+    public SkillViewAdapter skillViewAdapter() {
         return new SkillViewAdapter();
     }
 }
