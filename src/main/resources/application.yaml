@@ -14,7 +14,21 @@ server:
 logging:
   file: ./logs/application-debug.log
   level:
-    root: DEBUG
+    root: INFO
   pattern:
     console: '%d{yyyy-MM-dd HH:mm:ss} - %msg%n'
     file: '%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n'
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ["metrics", "beans", "health", "prometheus"]
+    metrics:
+      enabled=true:
+  endpoint:
+    prometheus:
+      enabled=true:
+  metrics:
+    export:
+      prometheus:
+        enabled=true:
